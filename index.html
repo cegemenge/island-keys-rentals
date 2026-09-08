@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Island Keys Rentals | Barbados</title>
+
+<meta name="description" content="Island Keys Rentals - Stay and Drive packages, luxury accommodation and car rental in Barbados.">
+
+<style>
+
+/* =========================
+   RESET
+   ========================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:#12345b;
+    line-height:1.6;
+    background:#fff;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+.container{
+    width:min(1150px,92%);
+    margin:auto;
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#fff;
+    border-bottom:1px solid #e5e9ed;
+}
+
+nav{
+    min-height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
+}
+
+.logo{
+    color:#12345b;
+    font-family:Georgia,serif;
+    font-size:30px;
+    font-weight:bold;
+    line-height:1;
+}
+
+.logo small{
+    display:block;
+    color:#08783c;
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    letter-spacing:4px;
+    margin-top:5px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    font-weight:bold;
+}
+
+.nav-links a:hover{
+    color:#08783c;
+}
+
+.book-btn{
+    background:#08783c;
+    color:#fff !important;
+    padding:13px 24px;
+    border-radius:30px;
+}
+
+
+/* =========================
+   MOBILE MENU BUTTON
+   ========================= */
+
+.menu-toggle{
+    display:none;
+    border:none;
+    background:transparent;
+    color:#12345b;
+    font-size:30px;
+    cursor:pointer;
+    padding:5px 10px;
+    line-height:1;
+    z-index:1001;
+}
+
+.menu-toggle:hover{
+    color:#08783c;
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero{
+    padding:85px 0;
+    background:linear-gradient(135deg,#f5fbf8,#fff 55%,#eef8f4);
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.eyebrow{
+    color:#08783c;
+    font-size:14px;
+    font-weight:bold;
+    letter-spacing:3px;
+    margin-bottom:15px;
+}
+
+h1{
+    font-family:Georgia,serif;
+    font-size:clamp(48px,6vw,78px);
+    line-height:1.02;
+    color:#12345b;
+    margin-bottom:22px;
+}
+
+h1 span{
+    color:#08783c;
+}
+
+.hero-text{
+    color:#5d718b;
+    font-size:18px;
+    max-width:580px;
+    margin-bottom:28px;
+}
+
+.buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 27px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:#08783c;
+    color:#fff;
+}
+
+.btn-secondary{
+    border:2px solid #d9e1e8;
+    color:#12345b;
+    background:#fff;
+}
+
+.hero-flyer{
+    background:#fff;
+    padding:10px;
+    border-radius:28px;
+    box-shadow:0 20px 55px rgba(0,0,0,.12);
+}
+
+.hero-flyer img{
+    width:100%;
+    border-radius:20px;
+}
+
+
+/* =========================
+   GENERAL SECTIONS
+   ========================= */
+
+section{
+    padding:90px 0;
+}
+
+.section-label{
+    text-align:center;
+    color:#08783c;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:3px;
+    margin-bottom:12px;
+}
+
+.section-title{
+    text-align:center;
+    font-family:Georgia,serif;
+    color:#12345b;
+    font-size:clamp(38px,5vw,58px);
+    margin-bottom:18px;
+}
+
+.section-description{
+    text-align:center;
+    color:#66758a;
+    max-width:700px;
+    margin:0 auto 45px;
+    font-size:17px;
+}
+
+
+/* =========================
+   PACKAGE
+   ========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    padding:34px;
+    border:1px solid #e4e9ed;
+    border-radius:22px;
+    background:#fff;
+    box-shadow:0 15px 40px rgba(0,0,0,.05);
+}
+
+.card-icon{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#eaf7f0;
+    display:grid;
+    place-items:center;
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-family:Georgia,serif;
+    font-size:28px;
+    color:#12345b;
+    margin-bottom:8px;
+}
+
+.card h4{
+    color:#08783c;
+    margin-bottom:14px;
+}
+
+.card p{
+    color:#66758a;
+    margin-bottom:20px;
+}
+
+.price{
+    font-size:32px;
+    font-weight:bold;
+    color:#12345b;
+}
+
+.price span{
+    font-size:14px;
+    font-weight:normal;
+    color:#66758a;
+}
+
+.package-total{
+    margin-top:35px;
+    padding:30px;
+    border-radius:22px;
+    background:#12345b;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+
+.package-total h3{
+    font-size:14px;
+    text-transform:uppercase;
+    opacity:.75;
+}
+
+.package-total strong{
+    display:block;
+    font-size:35px;
+    color:#ffbf1c;
+}
+
+.save{
+    background:#ffbf1c;
+    color:#12345b;
+    padding:14px 25px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+
+/* =========================
+   TWO COLUMN
+   ========================= */
+
+.light-section{
+    background:#f5f9fc;
+}
+
+.two-column{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:65px;
+    align-items:center;
+}
+
+.large-flyer{
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+
+.large-flyer img{
+    width:100%;
+}
+
+.content h2{
+    font-family:Georgia,serif;
+    color:#12345b;
+    font-size:clamp(42px,5vw,65px);
+    line-height:1.05;
+    margin-bottom:22px;
+}
+
+.content p{
+    color:#66758a;
+    font-size:17px;
+    margin-bottom:20px;
+}
+
+.check-list{
+    list-style:none;
+    margin:25px 0;
+}
+
+.check-list li{
+    margin-bottom:14px;
+    font-weight:bold;
+    color:#12345b;
+}
+
+.check-list li::before{
+    content:"✓";
+    color:#08783c;
+    font-size:20px;
+    margin-right:10px;
+}
+
+
+/* =========================
+   BARBADOS
+   ========================= */
+
+.barbados{
+    background:linear-gradient(135deg,#12345b,#08783c);
+    color:#fff;
+    text-align:center;
+}
+
+.barbados .section-label{
+    color:#ffbf1c;
+}
+
+.barbados .section-title{
+    color:#fff;
+}
+
+.barbados .section-description{
+    color:#fff;
+}
+
+.destinations{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.destination{
+    padding:30px 20px;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:18px;
+    background:rgba(255,255,255,.08);
+}
+
+.destination-icon{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.destination h3{
+    margin-bottom:7px;
+}
+
+.destination p{
+    opacity:.85;
+    font-size:14px;
+}
+
+
+/* =========================
+   BOOKING
+   ========================= */
+
+.contact{
+    background:#f5f9fc;
+}
+
+.booking-wrapper{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:35px;
+    align-items:start;
+}
+
+.booking-info{
+    background:#12345b;
+    color:#fff;
+    padding:40px;
+    border-radius:25px;
+}
+
+.booking-info h2{
+    font-family:Georgia,serif;
+    font-size:45px;
+    line-height:1.1;
+    margin-bottom:18px;
+}
+
+.booking-info p{
+    opacity:.9;
+    margin-bottom:25px;
+}
+
+.contact-line{
+    margin:18px 0;
+    font-size:16px;
+}
+
+.booking-form{
+    background:#fff;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 15px 45px rgba(0,0,0,.08);
+}
+
+.booking-form h2{
+    font-family:Georgia,serif;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.booking-form .intro{
+    color:#66758a;
+    margin-bottom:25px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #d5dce4;
+    border-radius:10px;
+    font-family:Arial,sans-serif;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#08783c;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.submit-btn{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    background:#08783c;
+    color:#fff;
+    padding:16px;
+    border-radius:30px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.submit-btn:hover{
+    background:#065d2e;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer{
+    background:#12345b;
+    color:#fff;
+    text-align:center;
+    padding:35px 20px;
+}
+
+footer strong{
+    color:#ffbf1c;
+}
+
+
+/* =========================
+   WHATSAPP
+   ========================= */
+
+.whatsapp-float{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    background:#20c76a;
+    color:#fff;
+    display:grid;
+    place-items:center;
+    font-size:28px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    z-index:999;
+}
+
+
+/* =========================
+   TABLET / MOBILE
+   ========================= */
+
+@media(max-width:850px){
+
+    /* SHOW HAMBURGER */
+
+    .menu-toggle{
+        display:block;
+    }
+
+    /* HIDE NORMAL DESKTOP MENU */
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:78px;
+        left:0;
+        right:0;
+        background:#fff;
+        padding:20px;
+        flex-direction:column;
+        align-items:stretch;
+        gap:10px;
+        box-shadow:0 10px 25px rgba(0,0,0,.12);
+        z-index:1000;
+    }
+
+    /* SHOW MENU WHEN ACTIVE */
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .nav-links a{
+        display:block;
+        padding:12px;
+    }
+
+    .nav-links .book-btn{
+        text-align:center;
+    }
+
+
+    .hero-grid,
+    .two-column,
+    .booking-wrapper{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:55px 0;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .destinations{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .package-total{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    h1{
+        font-size:50px;
+    }
+}
+
+
+/* =========================
+   SMALL MOBILE
+   ========================= */
+
+@media(max-width:550px){
+
+    .destinations{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:65px 0;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .content h2{
+        font-size:42px;
+    }
+
+    .booking-info h2{
+        font-size:36px;
+    }
+
+    .booking-form{
+        padding:25px;
+    }
+
+    .menu-toggle{
+        font-size:28px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+     ========================= -->
+
+<header>
+
+<div class="container">
+
+<nav>
+
+<a href="#home" class="logo">
+Island Keys
+<small>RENTALS</small>
+</a>
+
+
+<!-- MOBILE MENU BUTTON -->
+
+<button
+type="button"
+class="menu-toggle"
+id="menuToggle"
+aria-label="Open navigation menu"
+aria-expanded="false">
+☰
+</button>
+
+
+<div class="nav-links" id="navLinks">
+
+<a href="#home">Home</a>
+
+<a href="#package">
+Stay &amp; Drive
+</a>
+
+<a href="#apartment">
+Apartment
+</a>
+
+<a href="#car">
+Car Rental
+</a>
+
+<a href="#barbados">
+Barbados
+</a>
+
+<a href="#contact" class="book-btn">
+Book Now
+</a>
+
+</div>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+     ========================= -->
+
+<section class="hero" id="home">
+
+<div class="container hero-grid">
+
+<div>
+
+<p class="eyebrow">
+YOUR PERFECT ISLAND GETAWAY
+</p>
+
+<h1>
+Stay &amp; Drive
+<span>Package</span>
+</h1>
+
+<p class="hero-text">
+Enjoy the freedom of the open road and the comfort of a luxury stay while exploring beautiful Barbados.
+</p>
+
+<div class="buttons">
+
+<a href="#contact" class="btn btn-primary">
+Book Your Stay
+</a>
+
+<a href="#package" class="btn btn-secondary">
+View Package
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-flyer">
+
+<img
+src="flyer.jpg"
+alt="Island Keys Rentals Stay and Drive Package">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PACKAGE
+     ========================= -->
+
+<section id="package">
+
+<div class="container">
+
+<p class="section-label">
+OUR SPECIAL OFFER
+</p>
+
+<h2 class="section-title">
+7-Day Stay &amp; Drive Package
+</h2>
+
+<p class="section-description">
+Everything you need for a comfortable and convenient Barbados getaway.
+</p>
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<div class="card-icon">
+🏠
+</div>
+
+<h3>
+7 Nights
+</h3>
+
+<h4>
+One-Bedroom Luxury Apartment
+</h4>
+
+<p>
+Comfortable accommodation with modern amenities and Wi-Fi.
+</p>
+
+<div class="price">
+US$85 <span>/ night</span>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+🚗
+</div>
+
+<h3>
+7-Day Rental
+</h3>
+
+<h4>
+2026 Suzuki Swift Hybrid
+</h4>
+
+<p>
+Reliable, automatic and fuel-efficient transportation.
+</p>
+
+<div class="price">
+BDS$125 <span>/ day</span>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+💰
+</div>
+
+<h3>
+Save More
+</h3>
+
+<h4>
+When You Book Together
+</h4>
+
+<p>
+Combine accommodation and car rental into one package.
+</p>
+
+<div class="price">
+BDS$2,065
+</div>
+
+</div>
+
+</div>
+
+
+<div class="package-total">
+
+<div>
+
+<h3>
+Total Package
+</h3>
+
+<strong>
+BDS$2,065
+</strong>
+
+<span>
+or US$1,032.50
+</span>
+
+</div>
+
+<div class="save">
+SAVE BDS$280
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     APARTMENT
+     ========================= -->
+
+<section class="light-section" id="apartment">
+
+<div class="container two-column">
+
+<div class="large-flyer">
+
+<img
+src="flyer.jpg"
+alt="Island Keys Rentals apartment package">
+
+</div>
+
+
+<div class="content">
+
+<p class="eyebrow">
+COMFORTABLE ACCOMMODATION
+</p>
+
+<h2>
+Your Home<br>
+Away From<br>
+Home
+</h2>
+
+<p>
+Relax in a comfortable one-bedroom luxury apartment while enjoying your Barbados holiday.
+</p>
+
+<ul class="check-list">
+
+<li>
+One-Bedroom Apartment
+</li>
+
+<li>
+Modern Amenities
+</li>
+
+<li>
+Wi-Fi
+</li>
+
+<li>
+Air Conditioning
+</li>
+
+</ul>
+
+<a href="#contact" class="btn btn-primary">
+Ask About Accommodation
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CAR
+     ========================= -->
+
+<section id="car">
+
+<div class="container two-column">
+
+<div class="content">
+
+<p class="eyebrow">
+RELIABLE TRANSPORTATION
+</p>
+
+<h2>
+Explore<br>
+Barbados Your Way
+</h2>
+
+<p>
+Drive around Barbados in a 2026 Suzuki Swift Hybrid for a comfortable and fuel-efficient experience.
+</p>
+
+<ul class="check-list">
+
+<li>
+Automatic Transmission
+</li>
+
+<li>
+Fuel Efficient
+</li>
+
+<li>
+Air Conditioned
+</li>
+
+<li>
+Bluetooth Connectivity
+</li>
+
+<li>
+Cold A/C
+</li>
+
+</ul>
+
+<a href="#contact" class="btn btn-primary">
+Ask About Car Rental
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+🚗
+</div>
+
+<h3>
+2026 Suzuki Swift Hybrid
+</h3>
+
+<h4>
+Automatic • Fuel Efficient • Air Conditioned
+</h4>
+
+<p>
+A comfortable and reliable vehicle for exploring Barbados at your own pace.
+</p>
+
+<div class="price">
+BDS$125 <span>/ day</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     BARBADOS
+     ========================= -->
+
+<section class="barbados" id="barbados">
+
+<div class="container">
+
+<p class="section-label">
+DISCOVER THE ISLAND
+</p>
+
+<h2 class="section-title">
+Explore Barbados
+</h2>
+
+<p class="section-description">
+With your accommodation and transportation sorted, explore Barbados at your own pace.
+</p>
+
+
+<div class="destinations">
+
+
+<div class="destination">
+
+<div class="destination-icon">
+🏖️
+</div>
+
+<h3>
+Beautiful Beaches
+</h3>
+
+<p>
+Discover Barbados' stunning coastline.
+</p>
+
+</div>
+
+
+<div class="destination">
+
+<div class="destination-icon">
+🍽️
+</div>
+
+<h3>
+Restaurants
+</h3>
+
+<p>
+Experience local and international cuisine.
+</p>
+
+</div>
+
+
+<div class="destination">
+
+<div class="destination-icon">
+📍
+</div>
+
+<h3>
+Attractions
+</h3>
+
+<p>
+Visit memorable places across the island.
+</p>
+
+</div>
+
+
+<div class="destination">
+
+<div class="destination-icon">
+🌴
+</div>
+
+<h3>
+Island Adventures
+</h3>
+
+<p>
+Create your own Barbados adventure.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     BOOKING
+     ========================= -->
+
+<section class="contact" id="contact">
+
+<div class="container">
+
+<p class="section-label">
+READY FOR BARBADOS?
+</p>
+
+<h2 class="section-title">
+Book Your Island Escape
+</h2>
+
+<p class="section-description">
+Send your details and Island Keys Rentals can contact you about your booking.
+</p>
+
+
+<div class="booking-wrapper">
+
+
+<div class="booking-info">
+
+<h2>
+Let's Plan Your Barbados Stay
+</h2>
+
+<p>
+Choose your package and send your preferred dates. We'll get back to you with the details.
+</p>
+
+<div class="contact-line">
+📞 <strong>+1 246 851 7895</strong>
+</div>
+
+<div class="contact-line">
+✉️ islandkeysrental@gmail.com
+</div>
+
+<div class="contact-line">
+📍 Kendall Hill, Christ Church, Barbados
+</div>
+
+</div>
+
+
+<form
+class="booking-form"
+id="bookingForm">
+
+<h2>
+Booking Inquiry
+</h2>
+
+<p class="intro">
+Fill in your details below.
+</p>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label for="name">
+Full Name
+</label>
+
+<input
+type="text"
+id="name"
+placeholder="Your full name"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="phone">
+Phone / WhatsApp
+</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="Your phone number"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="email">
+Email Address
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="Your email address">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="guests">
+Number of Guests
+</label>
+
+<select id="guests">
+
+<option value="1">
+1 Guest
+</option>
+
+<option value="2">
+2 Guests
+</option>
+
+<option value="3">
+3 Guests
+</option>
+
+<option value="4">
+4 Guests
+</option>
+
+<option value="5">
+5 Guests
+</option>
+
+<option value="6">
+6+ Guests
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="checkin">
+Check-in Date
+</label>
+
+<input
+type="date"
+id="checkin"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="checkout">
+Check-out Date
+</label>
+
+<input
+type="date"
+id="checkout"
+required>
+
+</div>
+
+
+<div class="form-group full">
+
+<label for="packageChoice">
+What are you interested in?
+</label>
+
+<select id="packageChoice">
+
+<option>
+7-Day Stay &amp; Drive Package
+</option>
+
+<option>
+Apartment Only
+</option>
+
+<option>
+Car Rental Only
+</option>
+
+<option>
+Other / General Inquiry
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label for="message">
+Message
+</label>
+
+<textarea
+id="message"
+placeholder="Tell us anything else we should know..."></textarea>
+
+</div>
+
+
+</div>
+
+
+<button
+type="submit"
+class="submit-btn">
+
+💬 Send Booking Request on WhatsApp
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+     ========================= -->
+
+<footer>
+
+<p>
+<strong>
+Island Keys Rentals
+</strong>
+</p>
+
+<p>
+Stay &amp; Drive Packages • Apartment • Car Rental • Barbados
+</p>
+
+<p>
+© 2026 Island Keys Rentals. All rights reserved.
+</p>
+
+</footer>
+
+
+<!-- =========================
+     FLOATING WHATSAPP
+     ========================= -->
+
+<a
+href="https://wa.me/12468517895"
+target="_blank"
+rel="noopener"
+class="whatsapp-float"
+aria-label="Chat on WhatsApp">
+
+💬
+
+</a>
+
+
+<!-- =========================
+     JAVASCRIPT
+     ========================= -->
+
+<script>
+
+/* =========================
+   BOOKING FORM → WHATSAPP
+   ========================= */
+
+document
+.getElementById("bookingForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("name").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    const email =
+        document.getElementById("email").value;
+
+    const guests =
+        document.getElementById("guests").value;
+
+    const checkin =
+        document.getElementById("checkin").value;
+
+    const checkout =
+        document.getElementById("checkout").value;
+
+    const packageChoice =
+        document.getElementById("packageChoice").value;
+
+    const message =
+        document.getElementById("message").value;
+
+
+    const whatsappText =
+`Hello Island Keys Rentals!
+
+*BOOKING INQUIRY*
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Guests: ${guests}
+Check-in: ${checkin}
+Check-out: ${checkout}
+Package: ${packageChoice}
+Message: ${message}`;
+
+
+    const whatsappURL =
+        "https://wa.me/12468517895?text=" +
+        encodeURIComponent(whatsappText);
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+});
+
+
+/* =========================
+   MOBILE MENU
+   ========================= */
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuToggle.addEventListener("click", function(){
+
+    navLinks.classList.toggle("active");
+
+    const isOpen =
+        navLinks.classList.contains("active");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen
+    );
+
+    menuToggle.setAttribute(
+        "aria-label",
+        isOpen
+        ? "Close navigation menu"
+        : "Open navigation menu"
+    );
+
+    menuToggle.textContent =
+        isOpen ? "✕" : "☰";
+
+});
+
+
+/* =========================
+   CLOSE MENU AFTER CLICKING
+   ========================= */
+
+const mobileLinks =
+    navLinks.querySelectorAll("a");
+
+
+mobileLinks.forEach(function(link){
+
+    link.addEventListener("click", function(){
+
+        navLinks.classList.remove("active");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        menuToggle.setAttribute(
+            "aria-label",
+            "Open navigation menu"
+        );
+
+        menuToggle.textContent = "☰";
+
+    });
+
+});
+
+</script>
+
+
+</body>
+</html>
