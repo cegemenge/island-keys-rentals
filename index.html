@@ -709,6 +709,70 @@ footer strong{
     }
 }
 
+
+/* =========================
+   AVAILABILITY CALENDAR
+   ========================= */
+.availability-section{background:#fff;}
+.calendar-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:start;}
+.calendar-card{background:#fff;border:1px solid #e4e9ed;border-radius:24px;padding:28px;box-shadow:0 15px 40px rgba(0,0,0,.06);}
+.calendar-header{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px;}
+.calendar-header h3{font-family:Georgia,serif;font-size:28px;color:#12345b;}
+.calendar-nav{display:flex;gap:8px;}
+.calendar-nav button{width:42px;height:42px;border:1px solid #d5dce4;background:#fff;border-radius:50%;cursor:pointer;font-size:20px;color:#12345b;}
+.calendar-nav button:hover{background:#eaf7f0;border-color:#08783c;color:#08783c;}
+.calendar-weekdays,.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+.calendar-weekdays div{text-align:center;font-size:12px;font-weight:bold;color:#66758a;padding-bottom:8px;}
+.calendar-day{min-height:46px;border:1px solid transparent;background:#f7fafc;border-radius:10px;cursor:pointer;color:#12345b;font-weight:bold;}
+.calendar-day:hover:not(:disabled){border-color:#08783c;background:#eaf7f0;}
+.calendar-day.other-month{opacity:.35;}
+.calendar-day.past{color:#aeb8c3;background:#f3f5f7;cursor:not-allowed;}
+.calendar-day.booked{background:#fdecec;color:#b42318;text-decoration:line-through;cursor:not-allowed;}
+.calendar-day.selected{background:#08783c;color:#fff;}
+.calendar-day.in-range{background:#dff3e8;color:#12345b;}
+.calendar-day:disabled{opacity:.8;}
+.calendar-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:20px;font-size:13px;color:#66758a;}
+.legend-item{display:flex;align-items:center;gap:7px;}
+.legend-dot{width:13px;height:13px;border-radius:4px;border:1px solid #d5dce4;background:#f7fafc;}
+.legend-dot.booked{background:#fdecec;border-color:#f3b5b0;}
+.legend-dot.selected{background:#08783c;border-color:#08783c;}
+.calendar-info{background:#12345b;color:#fff;border-radius:24px;padding:35px;}
+.calendar-info h3{font-family:Georgia,serif;font-size:35px;line-height:1.15;margin-bottom:15px;}
+.calendar-info p{opacity:.9;margin-bottom:18px;}
+.calendar-status{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:18px;border-radius:15px;margin-top:22px;}
+.calendar-status strong{display:block;color:#ffbf1c;margin-bottom:6px;}
+.availability-note{font-size:13px;color:#66758a;margin-top:15px;}
+
+/* =========================
+   PROPERTY MANAGEMENT
+   ========================= */
+.management-section{background:#f5f9fc;}
+.management-banner{background:linear-gradient(135deg,#12345b,#08783c);color:#fff;border-radius:28px;padding:50px;margin-bottom:35px;}
+.management-banner .eyebrow{color:#ffbf1c;}
+.management-banner h2{font-family:Georgia,serif;font-size:clamp(40px,5vw,64px);line-height:1.05;margin-bottom:15px;}
+.management-banner p{font-size:18px;max-width:720px;opacity:.92;}
+.management-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.management-card{background:#fff;border:1px solid #e4e9ed;border-radius:20px;padding:28px;box-shadow:0 12px 35px rgba(0,0,0,.05);}
+.management-card .card-icon{margin-bottom:16px;}
+.management-card h3{font-family:Georgia,serif;font-size:24px;margin-bottom:9px;}
+.management-card p{color:#66758a;}
+.management-cta{margin-top:30px;text-align:center;background:#fff;border-radius:22px;padding:30px;border:1px solid #e4e9ed;}
+.management-cta h3{font-family:Georgia,serif;font-size:30px;margin-bottom:8px;}
+.management-cta p{color:#66758a;margin-bottom:20px;}
+
+@media(max-width:850px){
+ .calendar-wrap{grid-template-columns:1fr;}
+ .management-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:550px){
+ .calendar-card{padding:18px;}
+ .calendar-day{min-height:40px;font-size:13px;}
+ .calendar-weekdays,.calendar-grid{gap:4px;}
+ .management-grid{grid-template-columns:1fr;}
+ .management-banner{padding:32px 25px;}
+ .calendar-info{padding:28px 24px;}
+}
+
 </style>
 </head>
 
@@ -762,6 +826,14 @@ Car Rental
 
 <a href="#barbados">
 Barbados
+</a>
+
+<a href="#availability">
+Availability
+</a>
+
+<a href="#property-management">
+Property Management
 </a>
 
 <a href="#contact" class="book-btn">
@@ -863,8 +935,7 @@ Everything you need for a comfortable and convenient Barbados getaway.
 </h3>
 
 <h4>
-One-Bedroom Luxury Apartment
-</h4>
+One-Bedroom Luxury </h4>
 
 <p>
 Comfortable accommodation with modern amenities and Wi-Fi.
@@ -957,6 +1028,53 @@ SAVE BDS$280
 
 </section>
 
+
+<!-- =========================
+     AVAILABILITY
+     ========================= -->
+<section class="availability-section" id="availability">
+<div class="container">
+<p class="section-label">CHECK YOUR DATES</p>
+<h2 class="section-title">Availability Calendar</h2>
+<p class="section-description">
+Choose your preferred dates below. Booked dates are marked clearly so you can plan your Barbados stay with confidence.
+</p>
+
+<div class="calendar-wrap">
+<div class="calendar-card">
+<div class="calendar-header">
+<h3 id="calendarMonth">Month Year</h3>
+<div class="calendar-nav">
+<button type="button" id="prevMonth" aria-label="Previous month">‹</button>
+<button type="button" id="nextMonth" aria-label="Next month">›</button>
+</div>
+</div>
+<div class="calendar-weekdays">
+<div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+</div>
+<div class="calendar-grid" id="calendarGrid"></div>
+<div class="calendar-legend">
+<div class="legend-item"><span class="legend-dot"></span> Available</div>
+<div class="legend-item"><span class="legend-dot booked"></span> Booked</div>
+<div class="legend-item"><span class="legend-dot selected"></span> Selected</div>
+</div>
+<p class="availability-note">Select your check-in date first, then your check-out date.</p>
+</div>
+
+<div class="calendar-info">
+<p class="eyebrow">PLAN YOUR STAY</p>
+<h3>See the dates before you send your request.</h3>
+<p>Use the calendar to select your preferred check-in and check-out dates. Your selections will automatically appear in the booking form below.</p>
+<div class="calendar-status">
+<strong id="calendarStatusTitle">Select your dates</strong>
+<span id="calendarStatusText">Click an available date to begin.</span>
+</div>
+<p class="availability-note" style="color:#fff;opacity:.85;">Availability is subject to confirmation by Island Keys Rentals. A booking request does not become a confirmed reservation until the business confirms it.</p>
+<a href="#contact" class="btn btn-primary" style="margin-top:15px;background:#ffbf1c;color:#12345b;">Continue to Booking Request</a>
+</div>
+</div>
+</div>
+</section>
 
 <!-- =========================
      APARTMENT
@@ -1106,6 +1224,34 @@ BDS$125 <span>/ day</span>
 
 
 <!-- =========================
+     PROPERTY MANAGEMENT
+     ========================= -->
+<section class="management-section" id="property-management">
+<div class="container">
+<div class="management-banner">
+<p class="eyebrow">YOUR PROPERTY, OUR PRIORITY.</p>
+<h2>Property Management Services</h2>
+<p>Reliable management. Happier guests. Greater returns. Island Keys Rentals provides trusted local support for property owners in Barbados.</p>
+</div>
+
+<div class="management-grid">
+<div class="management-card"><div class="card-icon">🏠</div><h3>Property Management</h3><p>Professional on-island support to help keep your property running smoothly.</p></div>
+<div class="management-card"><div class="card-icon">🔧</div><h3>Maintenance &amp; Upkeep</h3><p>Reliable attention to maintenance and day-to-day property upkeep.</p></div>
+<div class="management-card"><div class="card-icon">💬</div><h3>Guest Support &amp; Bookings</h3><p>Support for guests and assistance with managing booking-related needs.</p></div>
+<div class="management-card"><div class="card-icon">🔎</div><h3>Property Inspections</h3><p>Regular property checks to help maintain standards and identify issues early.</p></div>
+<div class="management-card"><div class="card-icon">📈</div><h3>Maximize Your Returns</h3><p>Practical local support designed to help you get more from your Barbados property.</p></div>
+<div class="management-card"><div class="card-icon">🤝</div><h3>Tailored To Your Needs</h3><p>Professional and reliable service built around your property's requirements.</p></div>
+</div>
+
+<div class="management-cta">
+<h3>Invest in Paradise — We Handle the Rest.</h3>
+<p>Trusted local support • On-island management • Professional &amp; reliable</p>
+<a href="#management-contact" class="btn btn-primary">Let's Talk</a>
+</div>
+</div>
+</section>
+
+<!-- =========================
      BARBADOS
      ========================= -->
 
@@ -1203,6 +1349,39 @@ Create your own Barbados adventure.
 
 </section>
 
+
+<!-- =========================
+     PROPERTY MANAGEMENT CONTACT
+     ========================= -->
+<section class="contact" id="management-contact">
+<div class="container">
+<p class="section-label">PROPERTY OWNERS</p>
+<h2 class="section-title">Let's Talk</h2>
+<p class="section-description">Tell us a little about your property and what support you need.</p>
+<div class="booking-wrapper">
+<div class="booking-info">
+<h2>Your Property Partner in Barbados</h2>
+<p>We are here to provide trusted local support, professional management and tailored service for your property.</p>
+<div class="contact-line">📞 <strong>+1 246 851 7895</strong></div>
+<div class="contact-line">✉️ islandkeysrental@gmail.com</div>
+<div class="contact-line">📍 Kendall Hill, Christ Church, Barbados</div>
+</div>
+<form class="booking-form" id="managementForm">
+<h2>Property Management Inquiry</h2>
+<p class="intro">Send your details and we'll contact you to discuss your property.</p>
+<div class="form-grid">
+<div class="form-group"><label for="ownerName">Full Name</label><input type="text" id="ownerName" placeholder="Your full name" required></div>
+<div class="form-group"><label for="ownerPhone">Phone / WhatsApp</label><input type="tel" id="ownerPhone" placeholder="Your phone number" required></div>
+<div class="form-group"><label for="ownerEmail">Email Address</label><input type="email" id="ownerEmail" placeholder="Your email address"></div>
+<div class="form-group"><label for="propertyType">Property Type</label><select id="propertyType"><option>Apartment</option><option>House</option><option>Villa</option><option>Condo</option><option>Other</option></select></div>
+<div class="form-group full"><label for="propertyLocation">Property Location</label><input type="text" id="propertyLocation" placeholder="Where is the property located?" required></div>
+<div class="form-group full"><label for="managementMessage">How can we help?</label><textarea id="managementMessage" placeholder="Tell us about the property and the services you need..."></textarea></div>
+</div>
+<button type="submit" class="submit-btn">💬 Send Property Inquiry on WhatsApp</button>
+</form>
+</div>
+</div>
+</section>
 
 <!-- =========================
      BOOKING
@@ -1484,136 +1663,249 @@ aria-label="Chat on WhatsApp">
      ========================= -->
 
 <script>
+/* =========================
+   AVAILABILITY CALENDAR
+   ========================= */
+
+// ADD CONFIRMED BOOKED DATES HERE.
+// Use the format YYYY-MM-DD.
+// Example: const bookedDates = ["2026-10-12", "2026-10-13"];
+const bookedDates = [];
+
+const calendarGrid = document.getElementById("calendarGrid");
+const calendarMonth = document.getElementById("calendarMonth");
+const calendarStatusTitle = document.getElementById("calendarStatusTitle");
+const calendarStatusText = document.getElementById("calendarStatusText");
+const checkinInput = document.getElementById("checkin");
+const checkoutInput = document.getElementById("checkout");
+
+let calendarDate = new Date();
+calendarDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth(), 1);
+let selectedCheckIn = "";
+let selectedCheckOut = "";
+
+function dateKey(date){
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+}
+
+function parseDate(value){
+    return value ? new Date(value + "T00:00:00") : null;
+}
+
+function isBooked(key){
+    return bookedDates.includes(key);
+}
+
+function isPast(date){
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    return date < today;
+}
+
+function rangeContainsBooked(startKey, endKey){
+    const start = parseDate(startKey);
+    const end = parseDate(endKey);
+    if(!start || !end) return false;
+    const cursor = new Date(start);
+    while(cursor <= end){
+        if(isBooked(dateKey(cursor))) return true;
+        cursor.setDate(cursor.getDate() + 1);
+    }
+    return false;
+}
+
+function renderCalendar(){
+    const year = calendarDate.getFullYear();
+    const month = calendarDate.getMonth();
+    calendarMonth.textContent = calendarDate.toLocaleString("en-US", {month:"long", year:"numeric"});
+    calendarGrid.innerHTML = "";
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+    for(let i = firstDay - 1; i >= 0; i--){
+        const date = new Date(year, month - 1, daysInPrevMonth - i);
+        addDay(date, true);
+    }
+
+    for(let day = 1; day <= daysInMonth; day++){
+        addDay(new Date(year, month, day), false);
+    }
+
+    const totalCells = firstDay + daysInMonth;
+    const remaining = (7 - (totalCells % 7)) % 7;
+    for(let day = 1; day <= remaining; day++){
+        addDay(new Date(year, month + 1, day), true);
+    }
+}
+
+function addDay(date, otherMonth){
+    const key = dateKey(date);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "calendar-day";
+    button.textContent = date.getDate();
+    button.setAttribute("aria-label", date.toLocaleDateString("en-US", {weekday:"long", month:"long", day:"numeric", year:"numeric"}));
+
+    if(otherMonth) button.classList.add("other-month");
+    if(isPast(date)) button.classList.add("past");
+    if(isBooked(key)) button.classList.add("booked");
+    if(key === selectedCheckIn || key === selectedCheckOut) button.classList.add("selected");
+    if(selectedCheckIn && selectedCheckOut && key > selectedCheckIn && key < selectedCheckOut) button.classList.add("in-range");
+
+    const unavailable = isPast(date) || isBooked(key) || otherMonth;
+    button.disabled = unavailable;
+
+    if(!unavailable){
+        button.addEventListener("click", function(){ selectDate(key); });
+    }
+    calendarGrid.appendChild(button);
+}
+
+function selectDate(key){
+    if(!selectedCheckIn || (selectedCheckIn && selectedCheckOut)){
+        selectedCheckIn = key;
+        selectedCheckOut = "";
+        checkinInput.value = key;
+        checkoutInput.value = "";
+        checkoutInput.min = key;
+        calendarStatusTitle.textContent = "Check-in selected";
+        calendarStatusText.textContent = "Now select an available check-out date.";
+    } else {
+        if(key <= selectedCheckIn){
+            selectedCheckIn = key;
+            selectedCheckOut = "";
+            checkinInput.value = key;
+            checkoutInput.value = "";
+            checkoutInput.min = key;
+            calendarStatusTitle.textContent = "Check-in updated";
+            calendarStatusText.textContent = "Now select an available check-out date.";
+        } else if(rangeContainsBooked(selectedCheckIn, key)){
+            calendarStatusTitle.textContent = "Dates not available";
+            calendarStatusText.textContent = "Your selected range includes a booked date. Please choose another check-out date.";
+        } else {
+            selectedCheckOut = key;
+            checkoutInput.value = key;
+            calendarStatusTitle.textContent = "Dates selected";
+            calendarStatusText.textContent = `${selectedCheckIn} to ${selectedCheckOut}. Scroll down to send your booking request.`;
+        }
+    }
+    renderCalendar();
+}
+
+document.getElementById("prevMonth").addEventListener("click", function(){
+    calendarDate.setMonth(calendarDate.getMonth() - 1);
+    renderCalendar();
+});
+
+document.getElementById("nextMonth").addEventListener("click", function(){
+    calendarDate.setMonth(calendarDate.getMonth() + 1);
+    renderCalendar();
+});
+
+checkinInput.addEventListener("change", function(){
+    selectedCheckIn = this.value;
+    selectedCheckOut = "";
+    checkoutInput.value = "";
+    checkoutInput.min = this.value;
+    renderCalendar();
+});
+
+checkoutInput.addEventListener("change", function(){
+    if(!checkinInput.value || !this.value) return;
+    if(this.value <= checkinInput.value || rangeContainsBooked(checkinInput.value, this.value)){
+        alert("Please choose an available check-out date that does not include booked dates.");
+        this.value = "";
+        selectedCheckOut = "";
+    } else {
+        selectedCheckIn = checkinInput.value;
+        selectedCheckOut = this.value;
+    }
+    renderCalendar();
+});
+
+const todayKey = dateKey(new Date());
+checkinInput.min = todayKey;
+checkoutInput.min = todayKey;
+renderCalendar();
 
 /* =========================
    BOOKING FORM → WHATSAPP
    ========================= */
-
-document
-.getElementById("bookingForm")
-.addEventListener("submit", function(event){
-
+document.getElementById("bookingForm").addEventListener("submit", function(event){
     event.preventDefault();
 
-    const name =
-        document.getElementById("name").value;
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const guests = document.getElementById("guests").value;
+    const checkin = checkinInput.value;
+    const checkout = checkoutInput.value;
+    const packageChoice = document.getElementById("packageChoice").value;
+    const message = document.getElementById("message").value.trim();
 
-    const phone =
-        document.getElementById("phone").value;
+    if(!checkin || !checkout){
+        alert("Please select your check-in and check-out dates.");
+        return;
+    }
+    if(checkout <= checkin){
+        alert("Check-out must be after check-in.");
+        return;
+    }
+    if(rangeContainsBooked(checkin, checkout)){
+        alert("One or more dates in your selected range are booked. Please choose different dates.");
+        return;
+    }
 
-    const email =
-        document.getElementById("email").value;
-
-    const guests =
-        document.getElementById("guests").value;
-
-    const checkin =
-        document.getElementById("checkin").value;
-
-    const checkout =
-        document.getElementById("checkout").value;
-
-    const packageChoice =
-        document.getElementById("packageChoice").value;
-
-    const message =
-        document.getElementById("message").value;
-
-
-    const whatsappText =
-`Hello Island Keys Rentals!
-
-*BOOKING INQUIRY*
-
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-Guests: ${guests}
-Check-in: ${checkin}
-Check-out: ${checkout}
-Package: ${packageChoice}
-Message: ${message}`;
-
-
-    const whatsappURL =
-        "https://wa.me/12468517895?text=" +
-        encodeURIComponent(whatsappText);
-
-
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
-
+    const whatsappText = `Hello Island Keys Rentals!\n\n*BOOKING INQUIRY*\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nGuests: ${guests}\nCheck-in: ${checkin}\nCheck-out: ${checkout}\nPackage: ${packageChoice}\nMessage: ${message}`;
+    const whatsappURL = "https://wa.me/12468517895?text=" + encodeURIComponent(whatsappText);
+    window.open(whatsappURL, "_blank");
 });
 
+/* =========================
+   PROPERTY MANAGEMENT → WHATSAPP
+   ========================= */
+document.getElementById("managementForm").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const name = document.getElementById("ownerName").value.trim();
+    const phone = document.getElementById("ownerPhone").value.trim();
+    const email = document.getElementById("ownerEmail").value.trim();
+    const type = document.getElementById("propertyType").value;
+    const location = document.getElementById("propertyLocation").value.trim();
+    const message = document.getElementById("managementMessage").value.trim();
+
+    const whatsappText = `Hello Island Keys Rentals!\n\n*PROPERTY MANAGEMENT INQUIRY*\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nProperty Type: ${type}\nProperty Location: ${location}\nWhat I need help with: ${message}`;
+    const whatsappURL = "https://wa.me/12468517895?text=" + encodeURIComponent(whatsappText);
+    window.open(whatsappURL, "_blank");
+});
 
 /* =========================
    MOBILE MENU
    ========================= */
-
-const menuToggle =
-    document.getElementById("menuToggle");
-
-const navLinks =
-    document.getElementById("navLinks");
-
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
 menuToggle.addEventListener("click", function(){
-
     navLinks.classList.toggle("active");
-
-    const isOpen =
-        navLinks.classList.contains("active");
-
-    menuToggle.setAttribute(
-        "aria-expanded",
-        isOpen
-    );
-
-    menuToggle.setAttribute(
-        "aria-label",
-        isOpen
-        ? "Close navigation menu"
-        : "Open navigation menu"
-    );
-
-    menuToggle.textContent =
-        isOpen ? "✕" : "☰";
-
+    const isOpen = navLinks.classList.contains("active");
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    menuToggle.textContent = isOpen ? "✕" : "☰";
 });
 
-
-/* =========================
-   CLOSE MENU AFTER CLICKING
-   ========================= */
-
-const mobileLinks =
-    navLinks.querySelectorAll("a");
-
-
-mobileLinks.forEach(function(link){
-
+navLinks.querySelectorAll("a").forEach(function(link){
     link.addEventListener("click", function(){
-
         navLinks.classList.remove("active");
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-        menuToggle.setAttribute(
-            "aria-label",
-            "Open navigation menu"
-        );
-
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
         menuToggle.textContent = "☰";
-
     });
-
 });
-
 </script>
 
 
