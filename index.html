@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Island Keys Rentals | Barbados</title>
 
-<meta name="description" content="Island Keys Rentals - Stay and Drive packages, luxury accommodation and car rental in Barbados.">
+<meta name="description"
+content="Island Keys Rentals Barbados - 6-night, 7-day Stay & Drive package, accommodation, car rental and property management services.">
 
 <style>
 
-/* =========================
+/* =========================================================
    RESET
-   ========================= */
+   ========================================================= */
 
 *{
     box-sizing:border-box;
@@ -41,15 +43,22 @@ img{
     display:block;
 }
 
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
 .container{
     width:min(1150px,92%);
     margin:auto;
 }
 
 
-/* =========================
+/* =========================================================
    NAVIGATION
-   ========================= */
+   ========================================================= */
 
 header{
     position:sticky;
@@ -87,7 +96,7 @@ nav{
 .nav-links{
     display:flex;
     align-items:center;
-    gap:28px;
+    gap:27px;
     font-weight:bold;
 }
 
@@ -103,9 +112,9 @@ nav{
 }
 
 
-/* =========================
-   MOBILE MENU BUTTON
-   ========================= */
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
 
 .menu-toggle{
     display:none;
@@ -124,9 +133,9 @@ nav{
 }
 
 
-/* =========================
+/* =========================================================
    HERO
-   ========================= */
+   ========================================================= */
 
 .hero{
     padding:85px 0;
@@ -204,9 +213,9 @@ h1 span{
 }
 
 
-/* =========================
+/* =========================================================
    GENERAL SECTIONS
-   ========================= */
+   ========================================================= */
 
 section{
     padding:90px 0;
@@ -232,15 +241,15 @@ section{
 .section-description{
     text-align:center;
     color:#66758a;
-    max-width:700px;
+    max-width:750px;
     margin:0 auto 45px;
     font-size:17px;
 }
 
 
-/* =========================
+/* =========================================================
    PACKAGE
-   ========================= */
+   ========================================================= */
 
 .cards{
     display:grid;
@@ -320,6 +329,10 @@ section{
     color:#ffbf1c;
 }
 
+.package-total span{
+    font-size:16px;
+}
+
 .save{
     background:#ffbf1c;
     color:#12345b;
@@ -329,9 +342,27 @@ section{
 }
 
 
-/* =========================
+/* =========================================================
+   PACKAGE DETAILS
+   ========================================================= */
+
+.package-note{
+    margin-top:25px;
+    padding:20px;
+    background:#f5f9fc;
+    border-left:5px solid #08783c;
+    border-radius:10px;
+    color:#53677f;
+}
+
+.package-note strong{
+    color:#12345b;
+}
+
+
+/* =========================================================
    TWO COLUMN
-   ========================= */
+   ========================================================= */
 
 .light-section{
     background:#f5f9fc;
@@ -387,9 +418,206 @@ section{
 }
 
 
-/* =========================
+/* =========================================================
+   AVAILABILITY CALENDAR
+   ========================================================= */
+
+.availability-section{
+    background:#fff;
+}
+
+.calendar-wrap{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:30px;
+    align-items:start;
+}
+
+.calendar-card{
+    background:#fff;
+    border:1px solid #e4e9ed;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+.calendar-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:22px;
+}
+
+.calendar-header h3{
+    font-family:Georgia,serif;
+    font-size:28px;
+    color:#12345b;
+}
+
+.calendar-nav{
+    display:flex;
+    gap:8px;
+}
+
+.calendar-nav button{
+    width:42px;
+    height:42px;
+    border:1px solid #d5dce4;
+    background:#fff;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:20px;
+    color:#12345b;
+}
+
+.calendar-nav button:hover{
+    background:#eaf7f0;
+    border-color:#08783c;
+    color:#08783c;
+}
+
+.calendar-weekdays,
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:6px;
+}
+
+.calendar-weekdays div{
+    text-align:center;
+    font-size:12px;
+    font-weight:bold;
+    color:#66758a;
+    padding-bottom:8px;
+}
+
+.calendar-day{
+    min-height:46px;
+    border:1px solid transparent;
+    background:#f7fafc;
+    border-radius:10px;
+    cursor:pointer;
+    color:#12345b;
+    font-weight:bold;
+}
+
+.calendar-day:hover:not(:disabled){
+    border-color:#08783c;
+    background:#eaf7f0;
+}
+
+.calendar-day.other-month{
+    opacity:.35;
+}
+
+.calendar-day.past{
+    color:#aeb8c3;
+    background:#f3f5f7;
+    cursor:not-allowed;
+}
+
+.calendar-day.booked{
+    background:#fdecec;
+    color:#b42318;
+    text-decoration:line-through;
+    cursor:not-allowed;
+}
+
+.calendar-day.selected{
+    background:#08783c;
+    color:#fff;
+}
+
+.calendar-day.in-range{
+    background:#dff3e8;
+    color:#12345b;
+}
+
+.calendar-day:disabled{
+    opacity:.8;
+}
+
+.calendar-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:20px;
+    font-size:13px;
+    color:#66758a;
+}
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.legend-dot{
+    width:13px;
+    height:13px;
+    border-radius:4px;
+    border:1px solid #d5dce4;
+    background:#f7fafc;
+}
+
+.legend-dot.booked{
+    background:#fdecec;
+    border-color:#f3b5b0;
+}
+
+.legend-dot.selected{
+    background:#08783c;
+    border-color:#08783c;
+}
+
+.calendar-info{
+    background:#12345b;
+    color:#fff;
+    border-radius:24px;
+    padding:35px;
+}
+
+.calendar-info .eyebrow{
+    color:#ffbf1c;
+}
+
+.calendar-info h3{
+    font-family:Georgia,serif;
+    font-size:35px;
+    line-height:1.15;
+    margin-bottom:15px;
+}
+
+.calendar-info p{
+    opacity:.9;
+    margin-bottom:18px;
+}
+
+.calendar-status{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.15);
+    padding:18px;
+    border-radius:15px;
+    margin-top:22px;
+}
+
+.calendar-status strong{
+    display:block;
+    color:#ffbf1c;
+    margin-bottom:6px;
+}
+
+.availability-note{
+    font-size:13px;
+    color:#66758a;
+    margin-top:15px;
+}
+
+
+/* =========================================================
    BARBADOS
-   ========================= */
+   ========================================================= */
 
 .barbados{
     background:linear-gradient(135deg,#12345b,#08783c);
@@ -437,9 +665,91 @@ section{
 }
 
 
-/* =========================
-   BOOKING
-   ========================= */
+/* =========================================================
+   PROPERTY MANAGEMENT
+   ========================================================= */
+
+.management-section{
+    background:#f5f9fc;
+}
+
+.management-banner{
+    background:linear-gradient(135deg,#12345b,#08783c);
+    color:#fff;
+    border-radius:28px;
+    padding:50px;
+    margin-bottom:35px;
+}
+
+.management-banner .eyebrow{
+    color:#ffbf1c;
+}
+
+.management-banner h2{
+    font-family:Georgia,serif;
+    font-size:clamp(40px,5vw,64px);
+    line-height:1.05;
+    margin-bottom:15px;
+}
+
+.management-banner p{
+    font-size:18px;
+    max-width:750px;
+    opacity:.92;
+}
+
+.management-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.management-card{
+    background:#fff;
+    border:1px solid #e4e9ed;
+    border-radius:20px;
+    padding:28px;
+    box-shadow:0 12px 35px rgba(0,0,0,.05);
+}
+
+.management-card .card-icon{
+    margin-bottom:16px;
+}
+
+.management-card h3{
+    font-family:Georgia,serif;
+    font-size:24px;
+    margin-bottom:9px;
+}
+
+.management-card p{
+    color:#66758a;
+}
+
+.management-cta{
+    margin-top:30px;
+    text-align:center;
+    background:#fff;
+    border-radius:22px;
+    padding:30px;
+    border:1px solid #e4e9ed;
+}
+
+.management-cta h3{
+    font-family:Georgia,serif;
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.management-cta p{
+    color:#66758a;
+    margin-bottom:20px;
+}
+
+
+/* =========================================================
+   BOOKING / CONTACT
+   ========================================================= */
 
 .contact{
     background:#f5f9fc;
@@ -522,7 +832,6 @@ textarea{
     padding:13px 14px;
     border:1px solid #d5dce4;
     border-radius:10px;
-    font-family:Arial,sans-serif;
     font-size:15px;
     outline:none;
 }
@@ -555,9 +864,9 @@ textarea{
 }
 
 
-/* =========================
+/* =========================================================
    FOOTER
-   ========================= */
+   ========================================================= */
 
 footer{
     background:#12345b;
@@ -571,9 +880,9 @@ footer strong{
 }
 
 
-/* =========================
-   WHATSAPP
-   ========================= */
+/* =========================================================
+   WHATSAPP FLOAT
+   ========================================================= */
 
 .whatsapp-float{
     position:fixed;
@@ -592,19 +901,15 @@ footer strong{
 }
 
 
-/* =========================
-   TABLET / MOBILE
-   ========================= */
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media(max-width:850px){
-
-    /* SHOW HAMBURGER */
 
     .menu-toggle{
         display:block;
     }
-
-    /* HIDE NORMAL DESKTOP MENU */
 
     .nav-links{
         display:none;
@@ -621,8 +926,6 @@ footer strong{
         z-index:1000;
     }
 
-    /* SHOW MENU WHEN ACTIVE */
-
     .nav-links.active{
         display:flex;
     }
@@ -636,10 +939,10 @@ footer strong{
         text-align:center;
     }
 
-
     .hero-grid,
     .two-column,
-    .booking-wrapper{
+    .booking-wrapper,
+    .calendar-wrap{
         grid-template-columns:1fr;
     }
 
@@ -652,6 +955,10 @@ footer strong{
     }
 
     .destinations{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .management-grid{
         grid-template-columns:1fr 1fr;
     }
 
@@ -674,18 +981,19 @@ footer strong{
 }
 
 
-/* =========================
+/* =========================================================
    SMALL MOBILE
-   ========================= */
+   ========================================================= */
 
 @media(max-width:550px){
 
-    .destinations{
-        grid-template-columns:1fr;
-    }
-
     section{
         padding:65px 0;
+    }
+
+    .destinations,
+    .management-grid{
+        grid-template-columns:1fr;
     }
 
     .logo{
@@ -707,70 +1015,28 @@ footer strong{
     .menu-toggle{
         font-size:28px;
     }
-}
 
+    .calendar-card{
+        padding:18px;
+    }
 
-/* =========================
-   AVAILABILITY CALENDAR
-   ========================= */
-.availability-section{background:#fff;}
-.calendar-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:start;}
-.calendar-card{background:#fff;border:1px solid #e4e9ed;border-radius:24px;padding:28px;box-shadow:0 15px 40px rgba(0,0,0,.06);}
-.calendar-header{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px;}
-.calendar-header h3{font-family:Georgia,serif;font-size:28px;color:#12345b;}
-.calendar-nav{display:flex;gap:8px;}
-.calendar-nav button{width:42px;height:42px;border:1px solid #d5dce4;background:#fff;border-radius:50%;cursor:pointer;font-size:20px;color:#12345b;}
-.calendar-nav button:hover{background:#eaf7f0;border-color:#08783c;color:#08783c;}
-.calendar-weekdays,.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
-.calendar-weekdays div{text-align:center;font-size:12px;font-weight:bold;color:#66758a;padding-bottom:8px;}
-.calendar-day{min-height:46px;border:1px solid transparent;background:#f7fafc;border-radius:10px;cursor:pointer;color:#12345b;font-weight:bold;}
-.calendar-day:hover:not(:disabled){border-color:#08783c;background:#eaf7f0;}
-.calendar-day.other-month{opacity:.35;}
-.calendar-day.past{color:#aeb8c3;background:#f3f5f7;cursor:not-allowed;}
-.calendar-day.booked{background:#fdecec;color:#b42318;text-decoration:line-through;cursor:not-allowed;}
-.calendar-day.selected{background:#08783c;color:#fff;}
-.calendar-day.in-range{background:#dff3e8;color:#12345b;}
-.calendar-day:disabled{opacity:.8;}
-.calendar-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:20px;font-size:13px;color:#66758a;}
-.legend-item{display:flex;align-items:center;gap:7px;}
-.legend-dot{width:13px;height:13px;border-radius:4px;border:1px solid #d5dce4;background:#f7fafc;}
-.legend-dot.booked{background:#fdecec;border-color:#f3b5b0;}
-.legend-dot.selected{background:#08783c;border-color:#08783c;}
-.calendar-info{background:#12345b;color:#fff;border-radius:24px;padding:35px;}
-.calendar-info h3{font-family:Georgia,serif;font-size:35px;line-height:1.15;margin-bottom:15px;}
-.calendar-info p{opacity:.9;margin-bottom:18px;}
-.calendar-status{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:18px;border-radius:15px;margin-top:22px;}
-.calendar-status strong{display:block;color:#ffbf1c;margin-bottom:6px;}
-.availability-note{font-size:13px;color:#66758a;margin-top:15px;}
+    .calendar-day{
+        min-height:40px;
+        font-size:13px;
+    }
 
-/* =========================
-   PROPERTY MANAGEMENT
-   ========================= */
-.management-section{background:#f5f9fc;}
-.management-banner{background:linear-gradient(135deg,#12345b,#08783c);color:#fff;border-radius:28px;padding:50px;margin-bottom:35px;}
-.management-banner .eyebrow{color:#ffbf1c;}
-.management-banner h2{font-family:Georgia,serif;font-size:clamp(40px,5vw,64px);line-height:1.05;margin-bottom:15px;}
-.management-banner p{font-size:18px;max-width:720px;opacity:.92;}
-.management-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.management-card{background:#fff;border:1px solid #e4e9ed;border-radius:20px;padding:28px;box-shadow:0 12px 35px rgba(0,0,0,.05);}
-.management-card .card-icon{margin-bottom:16px;}
-.management-card h3{font-family:Georgia,serif;font-size:24px;margin-bottom:9px;}
-.management-card p{color:#66758a;}
-.management-cta{margin-top:30px;text-align:center;background:#fff;border-radius:22px;padding:30px;border:1px solid #e4e9ed;}
-.management-cta h3{font-family:Georgia,serif;font-size:30px;margin-bottom:8px;}
-.management-cta p{color:#66758a;margin-bottom:20px;}
+    .calendar-weekdays,
+    .calendar-grid{
+        gap:4px;
+    }
 
-@media(max-width:850px){
- .calendar-wrap{grid-template-columns:1fr;}
- .management-grid{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:550px){
- .calendar-card{padding:18px;}
- .calendar-day{min-height:40px;font-size:13px;}
- .calendar-weekdays,.calendar-grid{gap:4px;}
- .management-grid{grid-template-columns:1fr;}
- .management-banner{padding:32px 25px;}
- .calendar-info{padding:28px 24px;}
+    .management-banner{
+        padding:32px 25px;
+    }
+
+    .calendar-info{
+        padding:28px 24px;
+    }
 }
 
 </style>
@@ -780,9 +1046,9 @@ footer strong{
 <body>
 
 
-<!-- =========================
+<!-- =========================================================
      NAVIGATION
-     ========================= -->
+     ========================================================= -->
 
 <header>
 
@@ -791,20 +1057,18 @@ footer strong{
 <nav>
 
 <a href="#home" class="logo">
-Island Keys
-<small>RENTALS</small>
+    Island Keys
+    <small>RENTALS</small>
 </a>
 
 
-<!-- MOBILE MENU BUTTON -->
-
 <button
-type="button"
-class="menu-toggle"
-id="menuToggle"
-aria-label="Open navigation menu"
-aria-expanded="false">
-☰
+    type="button"
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Open navigation menu"
+    aria-expanded="false">
+    ☰
 </button>
 
 
@@ -813,31 +1077,31 @@ aria-expanded="false">
 <a href="#home">Home</a>
 
 <a href="#package">
-Stay &amp; Drive
+    Stay &amp; Drive
 </a>
 
 <a href="#apartment">
-Apartment
+    Apartment
 </a>
 
 <a href="#car">
-Car Rental
+    Car Rental
 </a>
 
 <a href="#barbados">
-Barbados
+    Barbados
 </a>
 
 <a href="#availability">
-Availability
+    Availability
 </a>
 
 <a href="#property-management">
-Property Management
+    Property Management
 </a>
 
 <a href="#contact" class="book-btn">
-Book Now
+    Book Now
 </a>
 
 </div>
@@ -849,9 +1113,9 @@ Book Now
 </header>
 
 
-<!-- =========================
+<!-- =========================================================
      HERO
-     ========================= -->
+     ========================================================= -->
 
 <section class="hero" id="home">
 
@@ -860,26 +1124,27 @@ Book Now
 <div>
 
 <p class="eyebrow">
-YOUR PERFECT ISLAND GETAWAY
+    YOUR PERFECT ISLAND GETAWAY
 </p>
 
 <h1>
-Stay &amp; Drive
-<span>Package</span>
+    Stay &amp; Drive
+    <span>Package</span>
 </h1>
 
 <p class="hero-text">
-Enjoy the freedom of the open road and the comfort of a luxury stay while exploring beautiful Barbados.
+    Escape the Canadian winter and enjoy sunshine, turquoise waters
+    and island time in beautiful Barbados.
 </p>
 
 <div class="buttons">
 
 <a href="#contact" class="btn btn-primary">
-Book Your Stay
+    Book Your Stay
 </a>
 
 <a href="#package" class="btn btn-secondary">
-View Package
+    View Package
 </a>
 
 </div>
@@ -890,8 +1155,8 @@ View Package
 <div class="hero-flyer">
 
 <img
-src="flyer.jpg"
-alt="Island Keys Rentals Stay and Drive Package">
+    src="flyer.jpg"
+    alt="Island Keys Rentals Canadian Winter Barbados Stay and Drive Package">
 
 </div>
 
@@ -900,24 +1165,25 @@ alt="Island Keys Rentals Stay and Drive Package">
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      PACKAGE
-     ========================= -->
+     ========================================================= -->
 
 <section id="package">
 
 <div class="container">
 
 <p class="section-label">
-OUR SPECIAL OFFER
+    SPECIAL BARBADOS OFFER
 </p>
 
 <h2 class="section-title">
-7-Day Stay &amp; Drive Package
+    6-Nights / 7-Days Stay &amp; Drive Package
 </h2>
 
 <p class="section-description">
-Everything you need for a comfortable and convenient Barbados getaway.
+    Escape the Canadian winter from January to March 2027 with one convenient
+    Barbados booking that combines accommodation and a 7-day Suzuki Swift Hybrid rental.
 </p>
 
 
@@ -927,22 +1193,24 @@ Everything you need for a comfortable and convenient Barbados getaway.
 <div class="card">
 
 <div class="card-icon">
-🏠
+    ✈️
 </div>
 
 <h3>
-7 Nights
+    FLY
 </h3>
 
 <h4>
-One-Bedroom Luxury </h4>
+    Your Flight to Barbados
+</h4>
 
 <p>
-Comfortable accommodation with modern amenities and Wi-Fi.
+    Book your preferred flight from Canada to Barbados.
+    Airfare is not included in the package price.
 </p>
 
 <div class="price">
-US$85 <span>/ night</span>
+    Airfare <span>not included</span>
 </div>
 
 </div>
@@ -951,23 +1219,24 @@ US$85 <span>/ night</span>
 <div class="card">
 
 <div class="card-icon">
-🚗
+    🏠
 </div>
 
 <h3>
-7-Day Rental
+    6 Nights
 </h3>
 
 <h4>
-2026 Suzuki Swift Hybrid
+    One-Bedroom Luxury Apartment
 </h4>
 
 <p>
-Reliable, automatic and fuel-efficient transportation.
+    Enjoy six nights in a comfortable one-bedroom apartment
+    during your Barbados getaway.
 </p>
 
 <div class="price">
-BDS$125 <span>/ day</span>
+    6 <span>nights</span>
 </div>
 
 </div>
@@ -976,26 +1245,28 @@ BDS$125 <span>/ day</span>
 <div class="card">
 
 <div class="card-icon">
-💰
+    🚗
 </div>
 
 <h3>
-Save More
+    7 Days
 </h3>
 
 <h4>
-When You Book Together
+    2026 Suzuki Swift Hybrid
 </h4>
 
 <p>
-Combine accommodation and car rental into one package.
+    Enjoy seven days of automatic, fuel-efficient and
+    air-conditioned transportation.
 </p>
 
 <div class="price">
-BDS$2,065
+    7 <span>days</span>
 </div>
 
 </div>
+
 
 </div>
 
@@ -1005,22 +1276,37 @@ BDS$2,065
 <div>
 
 <h3>
-Total Package
+    Complete Stay &amp; Drive Package
 </h3>
 
 <strong>
-BDS$2,065
+    BDS$2,065
 </strong>
 
 <span>
-or US$1,032.50
+    or US$1,032.50
 </span>
 
 </div>
 
 <div class="save">
-SAVE BDS$280
+    6 NIGHTS • 7 DAYS
 </div>
+
+</div>
+
+
+<div class="package-note">
+
+<strong>Package includes:</strong>
+6 nights accommodation in the one-bedroom luxury apartment
+and a 7-day 2026 Suzuki Swift Hybrid rental.
+
+<br><br>
+
+<strong>Important:</strong>
+Airfare is not included. Guests arrange their own flights.
+Island Keys Rentals can recommend trusted travel partners.
 
 </div>
 
@@ -1029,66 +1315,175 @@ SAVE BDS$280
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      AVAILABILITY
-     ========================= -->
+     ========================================================= -->
+
 <section class="availability-section" id="availability">
+
 <div class="container">
-<p class="section-label">CHECK YOUR DATES</p>
-<h2 class="section-title">Availability Calendar</h2>
-<p class="section-description">
-Choose your preferred dates below. Booked dates are marked clearly so you can plan your Barbados stay with confidence.
+
+<p class="section-label">
+    CHECK YOUR DATES
 </p>
 
+<h2 class="section-title">
+    Availability Calendar
+</h2>
+
+<p class="section-description">
+    Check your preferred dates before sending your booking request.
+    Booked dates will appear in red.
+</p>
+
+
 <div class="calendar-wrap">
+
+
 <div class="calendar-card">
+
 <div class="calendar-header">
-<h3 id="calendarMonth">Month Year</h3>
+
+<h3 id="calendarMonth">
+    Month Year
+</h3>
+
 <div class="calendar-nav">
-<button type="button" id="prevMonth" aria-label="Previous month">‹</button>
-<button type="button" id="nextMonth" aria-label="Next month">›</button>
+
+<button
+    type="button"
+    id="prevMonth"
+    aria-label="Previous month">
+    ‹
+</button>
+
+<button
+    type="button"
+    id="nextMonth"
+    aria-label="Next month">
+    ›
+</button>
+
 </div>
+
 </div>
+
+
 <div class="calendar-weekdays">
-<div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+
+<div>Sun</div>
+<div>Mon</div>
+<div>Tue</div>
+<div>Wed</div>
+<div>Thu</div>
+<div>Fri</div>
+<div>Sat</div>
+
 </div>
-<div class="calendar-grid" id="calendarGrid"></div>
+
+
+<div
+    class="calendar-grid"
+    id="calendarGrid">
+</div>
+
+
 <div class="calendar-legend">
-<div class="legend-item"><span class="legend-dot"></span> Available</div>
-<div class="legend-item"><span class="legend-dot booked"></span> Booked</div>
-<div class="legend-item"><span class="legend-dot selected"></span> Selected</div>
+
+<div class="legend-item">
+    <span class="legend-dot"></span>
+    Available
 </div>
-<p class="availability-note">Select your check-in date first, then your check-out date.</p>
+
+<div class="legend-item">
+    <span class="legend-dot booked"></span>
+    Booked
 </div>
+
+<div class="legend-item">
+    <span class="legend-dot selected"></span>
+    Selected
+</div>
+
+</div>
+
+
+<p class="availability-note">
+    Select your check-in date first, then your check-out date.
+</p>
+
+</div>
+
 
 <div class="calendar-info">
-<p class="eyebrow">PLAN YOUR STAY</p>
-<h3>See the dates before you send your request.</h3>
-<p>Use the calendar to select your preferred check-in and check-out dates. Your selections will automatically appear in the booking form below.</p>
+
+<p class="eyebrow">
+    PLAN YOUR STAY
+</p>
+
+<h3>
+    Check your dates before you book.
+</h3>
+
+<p>
+    Select your preferred check-in and check-out dates.
+    Your dates will automatically appear in the booking form.
+</p>
+
+
 <div class="calendar-status">
-<strong id="calendarStatusTitle">Select your dates</strong>
-<span id="calendarStatusText">Click an available date to begin.</span>
+
+<strong id="calendarStatusTitle">
+    Select your dates
+</strong>
+
+<span id="calendarStatusText">
+    Click an available date to begin.
+</span>
+
 </div>
-<p class="availability-note" style="color:#fff;opacity:.85;">Availability is subject to confirmation by Island Keys Rentals. A booking request does not become a confirmed reservation until the business confirms it.</p>
-<a href="#contact" class="btn btn-primary" style="margin-top:15px;background:#ffbf1c;color:#12345b;">Continue to Booking Request</a>
+
+
+<p style="font-size:13px;margin-top:20px;color:#fff;opacity:.85;">
+
+Availability is subject to confirmation by Island Keys Rentals.
+A booking request is not a confirmed reservation until the business confirms it.
+
+</p>
+
+
+<a
+    href="#contact"
+    class="btn"
+    style="margin-top:15px;background:#ffbf1c;color:#12345b;">
+
+    Continue to Booking Request
+
+</a>
+
 </div>
+
 </div>
+
 </div>
+
 </section>
 
-<!-- =========================
+
+<!-- =========================================================
      APARTMENT
-     ========================= -->
+     ========================================================= -->
 
 <section class="light-section" id="apartment">
 
 <div class="container two-column">
 
+
 <div class="large-flyer">
 
 <img
-src="flyer.jpg"
-alt="Island Keys Rentals apartment package">
+    src="flyer.jpg"
+    alt="Island Keys Rentals Barbados accommodation">
 
 </div>
 
@@ -1096,41 +1491,50 @@ alt="Island Keys Rentals apartment package">
 <div class="content">
 
 <p class="eyebrow">
-COMFORTABLE ACCOMMODATION
+    COMFORTABLE ACCOMMODATION
 </p>
 
 <h2>
-Your Home<br>
-Away From<br>
-Home
+    Your Home<br>
+    Away From<br>
+    Home
 </h2>
 
 <p>
-Relax in a comfortable one-bedroom luxury apartment while enjoying your Barbados holiday.
+    Relax in a comfortable one-bedroom luxury apartment while enjoying
+    your Barbados holiday.
 </p>
 
 <ul class="check-list">
 
 <li>
-One-Bedroom Apartment
+    One-Bedroom Apartment
 </li>
 
 <li>
-Modern Amenities
+    Modern Amenities
 </li>
 
 <li>
-Wi-Fi
+    Wi-Fi
 </li>
 
 <li>
-Air Conditioning
+    Air Conditioning
+</li>
+
+<li>
+    Comfortable Living
+</li>
+
+<li>
+    Relaxing Balcony
 </li>
 
 </ul>
 
 <a href="#contact" class="btn btn-primary">
-Ask About Accommodation
+    Ask About Accommodation
 </a>
 
 </div>
@@ -1140,55 +1544,57 @@ Ask About Accommodation
 </section>
 
 
-<!-- =========================
-     CAR
-     ========================= -->
+<!-- =========================================================
+     CAR RENTAL
+     ========================================================= -->
 
 <section id="car">
 
 <div class="container two-column">
 
+
 <div class="content">
 
 <p class="eyebrow">
-RELIABLE TRANSPORTATION
+    RELIABLE TRANSPORTATION
 </p>
 
 <h2>
-Explore<br>
-Barbados Your Way
+    Explore<br>
+    Barbados Your Way
 </h2>
 
 <p>
-Drive around Barbados in a 2026 Suzuki Swift Hybrid for a comfortable and fuel-efficient experience.
+    Drive around Barbados in a 2026 Suzuki Swift Hybrid
+    for a comfortable and fuel-efficient experience.
 </p>
 
 <ul class="check-list">
 
 <li>
-Automatic Transmission
+    Automatic Transmission
 </li>
 
 <li>
-Fuel Efficient
+    Fuel Efficient
 </li>
 
 <li>
-Air Conditioned
+    Air Conditioned
 </li>
 
 <li>
-Bluetooth Connectivity
+    Bluetooth
 </li>
 
 <li>
-Cold A/C
+    Cold A/C
 </li>
 
 </ul>
 
 <a href="#contact" class="btn btn-primary">
-Ask About Car Rental
+    Ask About Car Rental
 </a>
 
 </div>
@@ -1197,23 +1603,24 @@ Ask About Car Rental
 <div class="card">
 
 <div class="card-icon">
-🚗
+    🚗
 </div>
 
 <h3>
-2026 Suzuki Swift Hybrid
+    2026 Suzuki Swift Hybrid
 </h3>
 
 <h4>
-Automatic • Fuel Efficient • Air Conditioned
+    Automatic • Fuel Efficient • Air Conditioned
 </h4>
 
 <p>
-A comfortable and reliable vehicle for exploring Barbados at your own pace.
+    A comfortable and reliable vehicle for exploring Barbados
+    at your own pace.
 </p>
 
 <div class="price">
-BDS$125 <span>/ day</span>
+    7 <span>days included in the package</span>
 </div>
 
 </div>
@@ -1223,52 +1630,195 @@ BDS$125 <span>/ day</span>
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      PROPERTY MANAGEMENT
-     ========================= -->
-<section class="management-section" id="property-management">
+     ========================================================= -->
+
+<section
+    class="management-section"
+    id="property-management">
+
 <div class="container">
+
+
 <div class="management-banner">
-<p class="eyebrow">YOUR PROPERTY, OUR PRIORITY.</p>
-<h2>Property Management Services</h2>
-<p>Reliable management. Happier guests. Greater returns. Island Keys Rentals provides trusted local support for property owners in Barbados.</p>
+
+<p class="eyebrow">
+    YOUR PROPERTY, OUR PRIORITY.
+</p>
+
+<h2>
+    Property Management Services
+</h2>
+
+<p>
+    Reliable management. Happier guests. Greater returns.
+    Island Keys Rentals provides trusted local support for
+    property owners in Barbados.
+</p>
+
 </div>
+
 
 <div class="management-grid">
-<div class="management-card"><div class="card-icon">🏠</div><h3>Property Management</h3><p>Professional on-island support to help keep your property running smoothly.</p></div>
-<div class="management-card"><div class="card-icon">🔧</div><h3>Maintenance &amp; Upkeep</h3><p>Reliable attention to maintenance and day-to-day property upkeep.</p></div>
-<div class="management-card"><div class="card-icon">💬</div><h3>Guest Support &amp; Bookings</h3><p>Support for guests and assistance with managing booking-related needs.</p></div>
-<div class="management-card"><div class="card-icon">🔎</div><h3>Property Inspections</h3><p>Regular property checks to help maintain standards and identify issues early.</p></div>
-<div class="management-card"><div class="card-icon">📈</div><h3>Maximize Your Returns</h3><p>Practical local support designed to help you get more from your Barbados property.</p></div>
-<div class="management-card"><div class="card-icon">🤝</div><h3>Tailored To Your Needs</h3><p>Professional and reliable service built around your property's requirements.</p></div>
+
+
+<div class="management-card">
+
+<div class="card-icon">
+    🏠
 </div>
+
+<h3>
+    Property Management
+</h3>
+
+<p>
+    Professional on-island support to help keep your
+    property running smoothly.
+</p>
+
+</div>
+
+
+<div class="management-card">
+
+<div class="card-icon">
+    🔧
+</div>
+
+<h3>
+    Maintenance &amp; Upkeep
+</h3>
+
+<p>
+    Reliable attention to maintenance and day-to-day
+    property upkeep.
+</p>
+
+</div>
+
+
+<div class="management-card">
+
+<div class="card-icon">
+    💬
+</div>
+
+<h3>
+    Guest Support &amp; Bookings
+</h3>
+
+<p>
+    Support for guests and assistance with
+    booking-related needs.
+</p>
+
+</div>
+
+
+<div class="management-card">
+
+<div class="card-icon">
+    🔎
+</div>
+
+<h3>
+    Property Inspections
+</h3>
+
+<p>
+    Regular property checks to help maintain standards
+    and identify issues early.
+</p>
+
+</div>
+
+
+<div class="management-card">
+
+<div class="card-icon">
+    📈
+</div>
+
+<h3>
+    Maximize Your Returns
+</h3>
+
+<p>
+    Practical local support designed to help you get
+    more from your Barbados property.
+</p>
+
+</div>
+
+
+<div class="management-card">
+
+<div class="card-icon">
+    🤝
+</div>
+
+<h3>
+    Tailored To Your Needs
+</h3>
+
+<p>
+    Professional and reliable service built around
+    your property's requirements.
+</p>
+
+</div>
+
+
+</div>
+
 
 <div class="management-cta">
-<h3>Invest in Paradise — We Handle the Rest.</h3>
-<p>Trusted local support • On-island management • Professional &amp; reliable</p>
-<a href="#management-contact" class="btn btn-primary">Let's Talk</a>
+
+<h3>
+    Invest in Paradise — We Handle the Rest.
+</h3>
+
+<p>
+    Trusted Local Support • On-Island Management •
+    Professional &amp; Reliable
+</p>
+
+<a
+    href="#management-contact"
+    class="btn btn-primary">
+
+    Let's Talk
+
+</a>
+
 </div>
+
 </div>
+
 </section>
 
-<!-- =========================
+
+<!-- =========================================================
      BARBADOS
-     ========================= -->
+     ========================================================= -->
 
 <section class="barbados" id="barbados">
 
 <div class="container">
 
 <p class="section-label">
-DISCOVER THE ISLAND
+    DISCOVER THE ISLAND
 </p>
 
 <h2 class="section-title">
-Explore Barbados
+    Explore Barbados
 </h2>
 
 <p class="section-description">
-With your accommodation and transportation sorted, explore Barbados at your own pace.
+    With your accommodation and transportation sorted,
+    explore Barbados at your own pace.
 </p>
 
 
@@ -1278,15 +1828,15 @@ With your accommodation and transportation sorted, explore Barbados at your own 
 <div class="destination">
 
 <div class="destination-icon">
-🏖️
+    🏖️
 </div>
 
 <h3>
-Beautiful Beaches
+    Beautiful Beaches
 </h3>
 
 <p>
-Discover Barbados' stunning coastline.
+    Discover Barbados' stunning coastline.
 </p>
 
 </div>
@@ -1295,15 +1845,15 @@ Discover Barbados' stunning coastline.
 <div class="destination">
 
 <div class="destination-icon">
-🍽️
+    🍽️
 </div>
 
 <h3>
-Restaurants
+    Restaurants
 </h3>
 
 <p>
-Experience local and international cuisine.
+    Experience local and international cuisine.
 </p>
 
 </div>
@@ -1312,15 +1862,15 @@ Experience local and international cuisine.
 <div class="destination">
 
 <div class="destination-icon">
-📍
+    📍
 </div>
 
 <h3>
-Attractions
+    Attractions
 </h3>
 
 <p>
-Visit memorable places across the island.
+    Visit memorable places across the island.
 </p>
 
 </div>
@@ -1329,15 +1879,15 @@ Visit memorable places across the island.
 <div class="destination">
 
 <div class="destination-icon">
-🌴
+    🌴
 </div>
 
 <h3>
-Island Adventures
+    Island Adventures
 </h3>
 
 <p>
-Create your own Barbados adventure.
+    Create your own Barbados adventure.
 </p>
 
 </div>
@@ -1350,57 +1900,26 @@ Create your own Barbados adventure.
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      PROPERTY MANAGEMENT CONTACT
-     ========================= -->
-<section class="contact" id="management-contact">
-<div class="container">
-<p class="section-label">PROPERTY OWNERS</p>
-<h2 class="section-title">Let's Talk</h2>
-<p class="section-description">Tell us a little about your property and what support you need.</p>
-<div class="booking-wrapper">
-<div class="booking-info">
-<h2>Your Property Partner in Barbados</h2>
-<p>We are here to provide trusted local support, professional management and tailored service for your property.</p>
-<div class="contact-line">📞 <strong>+1 246 851 7895</strong></div>
-<div class="contact-line">✉️ islandkeysrental@gmail.com</div>
-<div class="contact-line">📍 Kendall Hill, Christ Church, Barbados</div>
-</div>
-<form class="booking-form" id="managementForm">
-<h2>Property Management Inquiry</h2>
-<p class="intro">Send your details and we'll contact you to discuss your property.</p>
-<div class="form-grid">
-<div class="form-group"><label for="ownerName">Full Name</label><input type="text" id="ownerName" placeholder="Your full name" required></div>
-<div class="form-group"><label for="ownerPhone">Phone / WhatsApp</label><input type="tel" id="ownerPhone" placeholder="Your phone number" required></div>
-<div class="form-group"><label for="ownerEmail">Email Address</label><input type="email" id="ownerEmail" placeholder="Your email address"></div>
-<div class="form-group"><label for="propertyType">Property Type</label><select id="propertyType"><option>Apartment</option><option>House</option><option>Villa</option><option>Condo</option><option>Other</option></select></div>
-<div class="form-group full"><label for="propertyLocation">Property Location</label><input type="text" id="propertyLocation" placeholder="Where is the property located?" required></div>
-<div class="form-group full"><label for="managementMessage">How can we help?</label><textarea id="managementMessage" placeholder="Tell us about the property and the services you need..."></textarea></div>
-</div>
-<button type="submit" class="submit-btn">💬 Send Property Inquiry on WhatsApp</button>
-</form>
-</div>
-</div>
-</section>
+     ========================================================= -->
 
-<!-- =========================
-     BOOKING
-     ========================= -->
-
-<section class="contact" id="contact">
+<section
+    class="contact"
+    id="management-contact">
 
 <div class="container">
 
 <p class="section-label">
-READY FOR BARBADOS?
+    PROPERTY OWNERS
 </p>
 
 <h2 class="section-title">
-Book Your Island Escape
+    Let's Talk
 </h2>
 
 <p class="section-description">
-Send your details and Island Keys Rentals can contact you about your booking.
+    Tell us a little about your property and what support you need.
 </p>
 
 
@@ -1410,38 +1929,39 @@ Send your details and Island Keys Rentals can contact you about your booking.
 <div class="booking-info">
 
 <h2>
-Let's Plan Your Barbados Stay
+    Your Property Partner in Barbados
 </h2>
 
 <p>
-Choose your package and send your preferred dates. We'll get back to you with the details.
+    We provide trusted local support, professional management
+    and tailored service for property owners.
 </p>
 
 <div class="contact-line">
-📞 <strong>+1 246 851 7895</strong>
+    📞 <strong>+1 246 851 7895</strong>
 </div>
 
 <div class="contact-line">
-✉️ islandkeysrental@gmail.com
+    ✉️ islandkeysrental@gmail.com
 </div>
 
 <div class="contact-line">
-📍 Kendall Hill, Christ Church, Barbados
+    📍 Kendall Hill, Christ Church, Barbados
 </div>
 
 </div>
 
 
 <form
-class="booking-form"
-id="bookingForm">
+    class="booking-form"
+    id="managementForm">
 
 <h2>
-Booking Inquiry
+    Property Management Inquiry
 </h2>
 
 <p class="intro">
-Fill in your details below.
+    Send your details and we'll contact you to discuss your property.
 </p>
 
 
@@ -1450,136 +1970,61 @@ Fill in your details below.
 
 <div class="form-group">
 
-<label for="name">
-Full Name
+<label for="ownerName">
+    Full Name
 </label>
 
 <input
-type="text"
-id="name"
-placeholder="Your full name"
-required>
+    type="text"
+    id="ownerName"
+    placeholder="Your full name"
+    required>
 
 </div>
 
 
 <div class="form-group">
 
-<label for="phone">
-Phone / WhatsApp
+<label for="ownerPhone">
+    Phone / WhatsApp
 </label>
 
 <input
-type="tel"
-id="phone"
-placeholder="Your phone number"
-required>
+    type="tel"
+    id="ownerPhone"
+    placeholder="Your phone number"
+    required>
 
 </div>
 
 
 <div class="form-group">
 
-<label for="email">
-Email Address
+<label for="ownerEmail">
+    Email Address
 </label>
 
 <input
-type="email"
-id="email"
-placeholder="Your email address">
+    type="email"
+    id="ownerEmail"
+    placeholder="Your email address">
 
 </div>
 
 
 <div class="form-group">
 
-<label for="guests">
-Number of Guests
+<label for="propertyType">
+    Property Type
 </label>
 
-<select id="guests">
+<select id="propertyType">
 
-<option value="1">
-1 Guest
-</option>
-
-<option value="2">
-2 Guests
-</option>
-
-<option value="3">
-3 Guests
-</option>
-
-<option value="4">
-4 Guests
-</option>
-
-<option value="5">
-5 Guests
-</option>
-
-<option value="6">
-6+ Guests
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label for="checkin">
-Check-in Date
-</label>
-
-<input
-type="date"
-id="checkin"
-required>
-
-</div>
-
-
-<div class="form-group">
-
-<label for="checkout">
-Check-out Date
-</label>
-
-<input
-type="date"
-id="checkout"
-required>
-
-</div>
-
-
-<div class="form-group full">
-
-<label for="packageChoice">
-What are you interested in?
-</label>
-
-<select id="packageChoice">
-
-<option>
-7-Day Stay &amp; Drive Package
-</option>
-
-<option>
-Apartment Only
-</option>
-
-<option>
-Car Rental Only
-</option>
-
-<option>
-Other / General Inquiry
-</option>
+<option>Apartment</option>
+<option>House</option>
+<option>Villa</option>
+<option>Condo</option>
+<option>Other</option>
 
 </select>
 
@@ -1588,13 +2033,28 @@ Other / General Inquiry
 
 <div class="form-group full">
 
-<label for="message">
-Message
+<label for="propertyLocation">
+    Property Location
+</label>
+
+<input
+    type="text"
+    id="propertyLocation"
+    placeholder="Where is the property located?"
+    required>
+
+</div>
+
+
+<div class="form-group full">
+
+<label for="managementMessage">
+    How can we help?
 </label>
 
 <textarea
-id="message"
-placeholder="Tell us anything else we should know..."></textarea>
+    id="managementMessage"
+    placeholder="Tell us about the property and the services you need..."></textarea>
 
 </div>
 
@@ -1603,10 +2063,10 @@ placeholder="Tell us anything else we should know..."></textarea>
 
 
 <button
-type="submit"
-class="submit-btn">
+    type="submit"
+    class="submit-btn">
 
-💬 Send Booking Request on WhatsApp
+    💬 Send Property Inquiry on WhatsApp
 
 </button>
 
@@ -1619,293 +2079,1351 @@ class="submit-btn">
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
+     BOOKING
+     ========================================================= -->
+
+<section
+    class="contact"
+    id="contact">
+
+<div class="container">
+
+<p class="section-label">
+    READY FOR BARBADOS?
+</p>
+
+<h2 class="section-title">
+    Book Your Island Escape
+</h2>
+
+<p class="section-description">
+    Choose your preferred dates and send a booking request.
+    Island Keys Rentals will confirm availability.
+</p>
+
+
+<div class="booking-wrapper">
+
+
+<div class="booking-info">
+
+<h2>
+    Let's Plan Your Barbados Stay
+</h2>
+
+<p>
+    Escape the Canadian winter and enjoy a 6-night,
+    7-day Stay &amp; Drive experience in Barbados.
+</p>
+
+<div class="contact-line">
+    📞 <strong>+1 246 851 7895</strong>
+</div>
+
+<div class="contact-line">
+    ✉️ islandkeysrental@gmail.com
+</div>
+
+<div class="contact-line">
+    📍 Kendall Hill, Christ Church, Barbados
+</div>
+
+<br>
+
+<p>
+    <strong>Package:</strong><br>
+    US$1,032.50 / BDS$2,065
+</p>
+
+<p>
+    <strong>Includes:</strong><br>
+    6 nights accommodation + 7-day car rental
+</p>
+
+<p>
+    <strong>Airfare:</strong><br>
+    Not included
+</p>
+
+</div>
+
+
+<form
+    class="booking-form"
+    id="bookingForm">
+
+<h2>
+    Booking Inquiry
+</h2>
+
+<p class="intro">
+    Fill in your details and your request will be sent through WhatsApp.
+</p>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label for="name">
+    Full Name
+</label>
+
+<input
+    type="text"
+    id="name"
+    placeholder="Your full name"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="phone">
+    Phone / WhatsApp
+</label>
+
+<input
+    type="tel"
+    id="phone"
+    placeholder="Your phone number"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="email">
+    Email Address
+</label>
+
+<input
+    type="email"
+    id="email"
+    placeholder="Your email address">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="guests">
+    Number of Guests
+</label>
+
+<select id="guests">
+
+<option value="1">
+    1 Guest
+</option>
+
+<option value="2">
+    2 Guests
+</option>
+
+<option value="3">
+    3 Guests
+</option>
+
+<option value="4">
+    4 Guests
+</option>
+
+<option value="5">
+    5 Guests
+</option>
+
+<option value="6">
+    6+ Guests
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="checkin">
+    Check-in Date
+</label>
+
+<input
+    type="date"
+    id="checkin"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="checkout">
+    Check-out Date
+</label>
+
+<input
+    type="date"
+    id="checkout"
+    required>
+
+</div>
+
+
+<div class="form-group full">
+
+<label for="packageChoice">
+    What are you interested in?
+</label>
+
+<select id="packageChoice">
+
+<option>
+    6-Nights / 7-Days Stay &amp; Drive Package
+</option>
+
+<option>
+    Apartment Only
+</option>
+
+<option>
+    Car Rental Only
+</option>
+
+<option>
+    Other / General Inquiry
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label for="message">
+    Message
+</label>
+
+<textarea
+    id="message"
+    placeholder="Tell us anything else we should know..."></textarea>
+
+</div>
+
+
+</div>
+
+
+<button
+    type="submit"
+    class="submit-btn">
+
+    💬 Send Booking Request on WhatsApp
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
      FOOTER
-     ========================= -->
+     ========================================================= -->
 
 <footer>
 
 <p>
-<strong>
-Island Keys Rentals
-</strong>
+    <strong>
+        Island Keys Rentals
+    </strong>
 </p>
 
 <p>
-Stay &amp; Drive Packages • Apartment • Car Rental • Barbados
+    Stay &amp; Drive Packages • Apartment • Car Rental •
+    Property Management • Barbados
 </p>
 
 <p>
-© 2026 Island Keys Rentals. All rights reserved.
+    © 2026 Island Keys Rentals. All rights reserved.
 </p>
 
 </footer>
 
 
-<!-- =========================
+<!-- =========================================================
      FLOATING WHATSAPP
-     ========================= -->
+     ========================================================= -->
 
 <a
-href="https://wa.me/12468517895"
-target="_blank"
-rel="noopener"
-class="whatsapp-float"
-aria-label="Chat on WhatsApp">
+    href="https://wa.me/12468517895"
+    target="_blank"
+    rel="noopener"
+    class="whatsapp-float"
+    aria-label="Chat on WhatsApp">
 
-💬
+    💬
 
 </a>
 
 
-<!-- =========================
+<!-- =========================================================
      JAVASCRIPT
-     ========================= -->
+     ========================================================= -->
 
 <script>
-/* =========================
+
+
+/* =========================================================
    AVAILABILITY CALENDAR
-   ========================= */
+   ========================================================= */
 
-// ADD CONFIRMED BOOKED DATES HERE.
-// Use the format YYYY-MM-DD.
-// Example: const bookedDates = ["2026-10-12", "2026-10-13"];
-const bookedDates = [];
+/*
+   IMPORTANT:
 
-const calendarGrid = document.getElementById("calendarGrid");
-const calendarMonth = document.getElementById("calendarMonth");
-const calendarStatusTitle = document.getElementById("calendarStatusTitle");
-const calendarStatusText = document.getElementById("calendarStatusText");
-const checkinInput = document.getElementById("checkin");
-const checkoutInput = document.getElementById("checkout");
+   Put CONFIRMED BOOKED DATES inside this list.
+
+   Example:
+
+   const bookedDates = [
+       "2027-01-10",
+       "2027-01-11",
+       "2027-01-12"
+   ];
+
+   For now it is empty because we do not yet have
+   confirmed booked dates from the client.
+*/
+
+const bookedDates = [
+    /*
+        ADD CONFIRMED BOOKED DATES HERE.
+
+        Example:
+        "2027-01-10",
+        "2027-01-11",
+        "2027-01-12"
+
+        These are the nights the apartment is occupied.
+        After a booking is confirmed, add each occupied
+        date here.
+    */
+];
+
+
+const calendarGrid =
+    document.getElementById("calendarGrid");
+
+const calendarMonth =
+    document.getElementById("calendarMonth");
+
+const calendarStatusTitle =
+    document.getElementById("calendarStatusTitle");
+
+const calendarStatusText =
+    document.getElementById("calendarStatusText");
+
+const checkinInput =
+    document.getElementById("checkin");
+
+const checkoutInput =
+    document.getElementById("checkout");
+
 
 let calendarDate = new Date();
-calendarDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth(), 1);
+
+calendarDate = new Date(
+    calendarDate.getFullYear(),
+    calendarDate.getMonth(),
+    1
+);
+
+
 let selectedCheckIn = "";
 let selectedCheckOut = "";
 
+
+/* =========================================================
+   DATE FUNCTIONS
+   ========================================================= */
+
 function dateKey(date){
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, "0");
-    const d = String(date.getDate()).padStart(2, "0");
-    return `${y}-${m}-${d}`;
+
+    const year =
+        date.getFullYear();
+
+    const month =
+        String(date.getMonth() + 1)
+        .padStart(2,"0");
+
+    const day =
+        String(date.getDate())
+        .padStart(2,"0");
+
+    return `${year}-${month}-${day}`;
 }
+
 
 function parseDate(value){
-    return value ? new Date(value + "T00:00:00") : null;
+
+    return value
+        ? new Date(value + "T00:00:00")
+        : null;
 }
 
+
 function isBooked(key){
+
     return bookedDates.includes(key);
 }
 
+
 function isPast(date){
+
     const today = new Date();
+
     today.setHours(0,0,0,0);
+
     return date < today;
 }
 
-function rangeContainsBooked(startKey, endKey){
-    const start = parseDate(startKey);
-    const end = parseDate(endKey);
-    if(!start || !end) return false;
-    const cursor = new Date(start);
-    while(cursor <= end){
-        if(isBooked(dateKey(cursor))) return true;
-        cursor.setDate(cursor.getDate() + 1);
+
+function rangeContainsBooked(
+    startKey,
+    endKey
+){
+
+    const start =
+        parseDate(startKey);
+
+    const end =
+        parseDate(endKey);
+
+    if(!start || !end){
+        return false;
     }
+
+    const cursor =
+        new Date(start);
+
+    /*
+        Check occupied nights only.
+        The checkout date itself is not an occupied night,
+        so a guest can check out on the same date another
+        guest checks in.
+    */
+    while(cursor < end){
+
+        if(isBooked(dateKey(cursor))){
+            return true;
+        }
+
+        cursor.setDate(
+            cursor.getDate() + 1
+        );
+    }
+
     return false;
 }
 
+
+/* =========================================================
+   RENDER CALENDAR
+   ========================================================= */
+
 function renderCalendar(){
-    const year = calendarDate.getFullYear();
-    const month = calendarDate.getMonth();
-    calendarMonth.textContent = calendarDate.toLocaleString("en-US", {month:"long", year:"numeric"});
+
+    const year =
+        calendarDate.getFullYear();
+
+    const month =
+        calendarDate.getMonth();
+
+
+    calendarMonth.textContent =
+        calendarDate.toLocaleString(
+            "en-US",
+            {
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+
     calendarGrid.innerHTML = "";
 
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const daysInPrevMonth = new Date(year, month, 0).getDate();
 
-    for(let i = firstDay - 1; i >= 0; i--){
-        const date = new Date(year, month - 1, daysInPrevMonth - i);
-        addDay(date, true);
+    const firstDay =
+        new Date(
+            year,
+            month,
+            1
+        ).getDay();
+
+
+    const daysInMonth =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+
+    const daysInPrevMonth =
+        new Date(
+            year,
+            month,
+            0
+        ).getDate();
+
+
+    /* Previous month */
+
+    for(
+        let i = firstDay - 1;
+        i >= 0;
+        i--
+    ){
+
+        const date =
+            new Date(
+                year,
+                month - 1,
+                daysInPrevMonth - i
+            );
+
+        addDay(date,true);
     }
 
-    for(let day = 1; day <= daysInMonth; day++){
-        addDay(new Date(year, month, day), false);
+
+    /* Current month */
+
+    for(
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ){
+
+        addDay(
+            new Date(
+                year,
+                month,
+                day
+            ),
+            false
+        );
     }
 
-    const totalCells = firstDay + daysInMonth;
-    const remaining = (7 - (totalCells % 7)) % 7;
-    for(let day = 1; day <= remaining; day++){
-        addDay(new Date(year, month + 1, day), true);
+
+    /* Next month */
+
+    const totalCells =
+        firstDay + daysInMonth;
+
+    const remaining =
+        (7 - (totalCells % 7)) % 7;
+
+
+    for(
+        let day = 1;
+        day <= remaining;
+        day++
+    ){
+
+        addDay(
+            new Date(
+                year,
+                month + 1,
+                day
+            ),
+            true
+        );
     }
 }
 
-function addDay(date, otherMonth){
-    const key = dateKey(date);
-    const button = document.createElement("button");
+
+/* =========================================================
+   ADD CALENDAR DAY
+   ========================================================= */
+
+function addDay(
+    date,
+    otherMonth
+){
+
+    const key =
+        dateKey(date);
+
+
+    const button =
+        document.createElement("button");
+
+
     button.type = "button";
-    button.className = "calendar-day";
-    button.textContent = date.getDate();
-    button.setAttribute("aria-label", date.toLocaleDateString("en-US", {weekday:"long", month:"long", day:"numeric", year:"numeric"}));
 
-    if(otherMonth) button.classList.add("other-month");
-    if(isPast(date)) button.classList.add("past");
-    if(isBooked(key)) button.classList.add("booked");
-    if(key === selectedCheckIn || key === selectedCheckOut) button.classList.add("selected");
-    if(selectedCheckIn && selectedCheckOut && key > selectedCheckIn && key < selectedCheckOut) button.classList.add("in-range");
+    button.className =
+        "calendar-day";
 
-    const unavailable = isPast(date) || isBooked(key) || otherMonth;
-    button.disabled = unavailable;
+
+    button.textContent =
+        date.getDate();
+
+
+    button.setAttribute(
+        "aria-label",
+        date.toLocaleDateString(
+            "en-US",
+            {
+                weekday:"long",
+                month:"long",
+                day:"numeric",
+                year:"numeric"
+            }
+        )
+    );
+
+
+    if(otherMonth){
+        button.classList.add(
+            "other-month"
+        );
+    }
+
+
+    if(isPast(date)){
+        button.classList.add(
+            "past"
+        );
+    }
+
+
+    if(isBooked(key)){
+        button.classList.add(
+            "booked"
+        );
+    }
+
+
+    if(
+        key === selectedCheckIn ||
+        key === selectedCheckOut
+    ){
+
+        button.classList.add(
+            "selected"
+        );
+    }
+
+
+    if(
+        selectedCheckIn &&
+        selectedCheckOut &&
+        key > selectedCheckIn &&
+        key < selectedCheckOut
+    ){
+
+        button.classList.add(
+            "in-range"
+        );
+    }
+
+
+    const unavailable =
+        isPast(date) ||
+        isBooked(key) ||
+        otherMonth;
+
+
+    button.disabled =
+        unavailable;
+
 
     if(!unavailable){
-        button.addEventListener("click", function(){ selectDate(key); });
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                selectDate(key);
+
+            }
+        );
+
     }
-    calendarGrid.appendChild(button);
+
+
+    calendarGrid.appendChild(
+        button
+    );
 }
+
+
+/* =========================================================
+   SELECT DATE
+   ========================================================= */
 
 function selectDate(key){
-    if(!selectedCheckIn || (selectedCheckIn && selectedCheckOut)){
-        selectedCheckIn = key;
-        selectedCheckOut = "";
-        checkinInput.value = key;
-        checkoutInput.value = "";
-        checkoutInput.min = key;
-        calendarStatusTitle.textContent = "Check-in selected";
-        calendarStatusText.textContent = "Now select an available check-out date.";
-    } else {
-        if(key <= selectedCheckIn){
-            selectedCheckIn = key;
-            selectedCheckOut = "";
-            checkinInput.value = key;
-            checkoutInput.value = "";
-            checkoutInput.min = key;
-            calendarStatusTitle.textContent = "Check-in updated";
-            calendarStatusText.textContent = "Now select an available check-out date.";
-        } else if(rangeContainsBooked(selectedCheckIn, key)){
-            calendarStatusTitle.textContent = "Dates not available";
-            calendarStatusText.textContent = "Your selected range includes a booked date. Please choose another check-out date.";
-        } else {
-            selectedCheckOut = key;
-            checkoutInput.value = key;
-            calendarStatusTitle.textContent = "Dates selected";
-            calendarStatusText.textContent = `${selectedCheckIn} to ${selectedCheckOut}. Scroll down to send your booking request.`;
-        }
+
+    /*
+       First click = check-in
+       Second click = check-out
+    */
+
+    if(
+        !selectedCheckIn ||
+        (
+            selectedCheckIn &&
+            selectedCheckOut
+        )
+    ){
+
+        selectedCheckIn =
+            key;
+
+        selectedCheckOut =
+            "";
+
+        checkinInput.value =
+            key;
+
+        checkoutInput.value =
+            "";
+
+        checkoutInput.min =
+            key;
+
+
+        calendarStatusTitle.textContent =
+            "Check-in selected";
+
+
+        calendarStatusText.textContent =
+            "Now select an available check-out date.";
+
     }
+
+    else{
+
+        /*
+           If user clicks a date before
+           the current check-in, make it
+           the new check-in.
+        */
+
+        if(key <= selectedCheckIn){
+
+            selectedCheckIn =
+                key;
+
+            selectedCheckOut =
+                "";
+
+            checkinInput.value =
+                key;
+
+            checkoutInput.value =
+                "";
+
+            checkoutInput.min =
+                key;
+
+
+            calendarStatusTitle.textContent =
+                "Check-in updated";
+
+
+            calendarStatusText.textContent =
+                "Now select an available check-out date.";
+
+        }
+
+
+        /*
+           Check whether range contains
+           booked dates.
+        */
+
+        else if(
+            rangeContainsBooked(
+                selectedCheckIn,
+                key
+            )
+        ){
+
+            calendarStatusTitle.textContent =
+                "Dates not available";
+
+
+            calendarStatusText.textContent =
+                "Your selected range contains a booked date. Please choose another date.";
+
+        }
+
+
+        else{
+
+            selectedCheckOut =
+                key;
+
+            checkoutInput.value =
+                key;
+
+
+            calendarStatusTitle.textContent =
+                "Dates selected";
+
+
+            calendarStatusText.textContent =
+                `${selectedCheckIn} to ${selectedCheckOut}. Your booking request is ready.`;
+
+        }
+
+    }
+
+
     renderCalendar();
 }
 
-document.getElementById("prevMonth").addEventListener("click", function(){
-    calendarDate.setMonth(calendarDate.getMonth() - 1);
-    renderCalendar();
-});
 
-document.getElementById("nextMonth").addEventListener("click", function(){
-    calendarDate.setMonth(calendarDate.getMonth() + 1);
-    renderCalendar();
-});
+/* =========================================================
+   CALENDAR PREVIOUS MONTH
+   ========================================================= */
 
-checkinInput.addEventListener("change", function(){
-    selectedCheckIn = this.value;
-    selectedCheckOut = "";
-    checkoutInput.value = "";
-    checkoutInput.min = this.value;
-    renderCalendar();
-});
+document
+    .getElementById("prevMonth")
+    .addEventListener(
+        "click",
+        function(){
 
-checkoutInput.addEventListener("change", function(){
-    if(!checkinInput.value || !this.value) return;
-    if(this.value <= checkinInput.value || rangeContainsBooked(checkinInput.value, this.value)){
-        alert("Please choose an available check-out date that does not include booked dates.");
-        this.value = "";
-        selectedCheckOut = "";
-    } else {
-        selectedCheckIn = checkinInput.value;
-        selectedCheckOut = this.value;
+            calendarDate.setMonth(
+                calendarDate.getMonth() - 1
+            );
+
+            renderCalendar();
+
+        }
+    );
+
+
+/* =========================================================
+   CALENDAR NEXT MONTH
+   ========================================================= */
+
+document
+    .getElementById("nextMonth")
+    .addEventListener(
+        "click",
+        function(){
+
+            calendarDate.setMonth(
+                calendarDate.getMonth() + 1
+            );
+
+            renderCalendar();
+
+        }
+    );
+
+
+/* =========================================================
+   CHECK-IN INPUT
+   ========================================================= */
+
+checkinInput.addEventListener(
+    "change",
+    function(){
+
+        if(!this.value){
+            return;
+        }
+
+
+        if(
+            isBooked(this.value)
+        ){
+
+            alert(
+                "This date is already booked. Please choose another date."
+            );
+
+            this.value = "";
+
+            return;
+        }
+
+
+        selectedCheckIn =
+            this.value;
+
+        selectedCheckOut =
+            "";
+
+
+        checkoutInput.value =
+            "";
+
+
+        checkoutInput.min =
+            this.value;
+
+
+        calendarStatusTitle.textContent =
+            "Check-in selected";
+
+
+        calendarStatusText.textContent =
+            "Now select an available check-out date.";
+
+
+        const chosenDate =
+            parseDate(this.value);
+
+
+        if(chosenDate){
+
+            calendarDate =
+                new Date(
+                    chosenDate.getFullYear(),
+                    chosenDate.getMonth(),
+                    1
+                );
+        }
+
+
+        renderCalendar();
+
     }
-    renderCalendar();
-});
+);
 
-const todayKey = dateKey(new Date());
-checkinInput.min = todayKey;
-checkoutInput.min = todayKey;
+
+/* =========================================================
+   CHECK-OUT INPUT
+   ========================================================= */
+
+checkoutInput.addEventListener(
+    "change",
+    function(){
+
+        if(
+            !checkinInput.value ||
+            !this.value
+        ){
+
+            return;
+        }
+
+
+        if(
+            this.value <=
+            checkinInput.value
+        ){
+
+            alert(
+                "Check-out must be after check-in."
+            );
+
+            this.value = "";
+
+            selectedCheckOut =
+                "";
+
+            return;
+        }
+
+
+        if(
+            rangeContainsBooked(
+                checkinInput.value,
+                this.value
+            )
+        ){
+
+            alert(
+                "One or more dates in your selected range are booked. Please choose different dates."
+            );
+
+            this.value = "";
+
+            selectedCheckOut =
+                "";
+
+            return;
+        }
+
+
+        selectedCheckIn =
+            checkinInput.value;
+
+        selectedCheckOut =
+            this.value;
+
+
+        calendarStatusTitle.textContent =
+            "Dates selected";
+
+
+        calendarStatusText.textContent =
+            `${selectedCheckIn} to ${selectedCheckOut}. Your booking request is ready.`;
+
+
+        renderCalendar();
+
+    }
+);
+
+
+/* =========================================================
+   SET MINIMUM DATE
+   ========================================================= */
+
+const todayKey =
+    dateKey(new Date());
+
+
+checkinInput.min =
+    todayKey;
+
+checkoutInput.min =
+    todayKey;
+
+
 renderCalendar();
 
-/* =========================
+
+/* =========================================================
    BOOKING FORM → WHATSAPP
-   ========================= */
-document.getElementById("bookingForm").addEventListener("submit", function(event){
-    event.preventDefault();
+   ========================================================= */
 
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const guests = document.getElementById("guests").value;
-    const checkin = checkinInput.value;
-    const checkout = checkoutInput.value;
-    const packageChoice = document.getElementById("packageChoice").value;
-    const message = document.getElementById("message").value.trim();
+document
+    .getElementById("bookingForm")
+    .addEventListener(
+        "submit",
+        function(event){
 
-    if(!checkin || !checkout){
-        alert("Please select your check-in and check-out dates.");
-        return;
-    }
-    if(checkout <= checkin){
-        alert("Check-out must be after check-in.");
-        return;
-    }
-    if(rangeContainsBooked(checkin, checkout)){
-        alert("One or more dates in your selected range are booked. Please choose different dates.");
-        return;
-    }
+            event.preventDefault();
 
-    const whatsappText = `Hello Island Keys Rentals!\n\n*BOOKING INQUIRY*\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nGuests: ${guests}\nCheck-in: ${checkin}\nCheck-out: ${checkout}\nPackage: ${packageChoice}\nMessage: ${message}`;
-    const whatsappURL = "https://wa.me/12468517895?text=" + encodeURIComponent(whatsappText);
-    window.open(whatsappURL, "_blank");
-});
 
-/* =========================
+            const name =
+                document
+                .getElementById("name")
+                .value
+                .trim();
+
+
+            const phone =
+                document
+                .getElementById("phone")
+                .value
+                .trim();
+
+
+            const email =
+                document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+            const guests =
+                document
+                .getElementById("guests")
+                .value;
+
+
+            const checkin =
+                checkinInput.value;
+
+
+            const checkout =
+                checkoutInput.value;
+
+
+            const packageChoice =
+                document
+                .getElementById("packageChoice")
+                .value;
+
+
+            const message =
+                document
+                .getElementById("message")
+                .value
+                .trim();
+
+
+            if(
+                !checkin ||
+                !checkout
+            ){
+
+                alert(
+                    "Please select your check-in and check-out dates."
+                );
+
+                return;
+            }
+
+
+            if(
+                checkout <= checkin
+            ){
+
+                alert(
+                    "Check-out must be after check-in."
+                );
+
+                return;
+            }
+
+
+            if(
+                rangeContainsBooked(
+                    checkin,
+                    checkout
+                )
+            ){
+
+                alert(
+                    "One or more dates in your selected range are booked. Please choose different dates."
+                );
+
+                return;
+            }
+
+
+            const whatsappText =
+`Hello Island Keys Rentals!
+
+BOOKING INQUIRY
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Guests: ${guests}
+Check-in: ${checkin}
+Check-out: ${checkout}
+
+Package: ${packageChoice}
+
+Message:
+${message}
+
+Please confirm availability and booking details.
+
+Thank you.`;
+
+
+            const whatsappURL =
+                "https://wa.me/12468517895?text=" +
+                encodeURIComponent(
+                    whatsappText
+                );
+
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+
+        }
+    );
+
+
+/* =========================================================
    PROPERTY MANAGEMENT → WHATSAPP
-   ========================= */
-document.getElementById("managementForm").addEventListener("submit", function(event){
-    event.preventDefault();
+   ========================================================= */
 
-    const name = document.getElementById("ownerName").value.trim();
-    const phone = document.getElementById("ownerPhone").value.trim();
-    const email = document.getElementById("ownerEmail").value.trim();
-    const type = document.getElementById("propertyType").value;
-    const location = document.getElementById("propertyLocation").value.trim();
-    const message = document.getElementById("managementMessage").value.trim();
+document
+    .getElementById("managementForm")
+    .addEventListener(
+        "submit",
+        function(event){
 
-    const whatsappText = `Hello Island Keys Rentals!\n\n*PROPERTY MANAGEMENT INQUIRY*\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nProperty Type: ${type}\nProperty Location: ${location}\nWhat I need help with: ${message}`;
-    const whatsappURL = "https://wa.me/12468517895?text=" + encodeURIComponent(whatsappText);
-    window.open(whatsappURL, "_blank");
-});
+            event.preventDefault();
 
-/* =========================
+
+            const name =
+                document
+                .getElementById("ownerName")
+                .value
+                .trim();
+
+
+            const phone =
+                document
+                .getElementById("ownerPhone")
+                .value
+                .trim();
+
+
+            const email =
+                document
+                .getElementById("ownerEmail")
+                .value
+                .trim();
+
+
+            const type =
+                document
+                .getElementById("propertyType")
+                .value;
+
+
+            const location =
+                document
+                .getElementById("propertyLocation")
+                .value
+                .trim();
+
+
+            const message =
+                document
+                .getElementById("managementMessage")
+                .value
+                .trim();
+
+
+            const whatsappText =
+`Hello Island Keys Rentals!
+
+PROPERTY MANAGEMENT INQUIRY
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+
+Property Type:
+${type}
+
+Property Location:
+${location}
+
+Services / Requirements:
+${message}
+
+I would like to discuss property management services.
+
+Thank you.`;
+
+
+            const whatsappURL =
+                "https://wa.me/12468517895?text=" +
+                encodeURIComponent(
+                    whatsappText
+                );
+
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+
+        }
+    );
+
+
+/* =========================================================
    MOBILE MENU
-   ========================= */
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+   ========================================================= */
 
-menuToggle.addEventListener("click", function(){
-    navLinks.classList.toggle("active");
-    const isOpen = navLinks.classList.contains("active");
-    menuToggle.setAttribute("aria-expanded", isOpen);
-    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-});
+const menuToggle =
+    document.getElementById(
+        "menuToggle"
+    );
 
-navLinks.querySelectorAll("a").forEach(function(link){
-    link.addEventListener("click", function(){
-        navLinks.classList.remove("active");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation menu");
-        menuToggle.textContent = "☰";
-    });
-});
+
+const navLinks =
+    document.getElementById(
+        "navLinks"
+    );
+
+
+menuToggle.addEventListener(
+    "click",
+    function(){
+
+        navLinks.classList.toggle(
+            "active"
+        );
+
+
+        const isOpen =
+            navLinks.classList.contains(
+                "active"
+            );
+
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
+        );
+
+
+        menuToggle.textContent =
+            isOpen
+                ? "✕"
+                : "☰";
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE MOBILE MENU AFTER CLICK
+   ========================================================= */
+
+navLinks
+    .querySelectorAll("a")
+    .forEach(
+        function(link){
+
+            link.addEventListener(
+                "click",
+                function(){
+
+                    navLinks.classList.remove(
+                        "active"
+                    );
+
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+
+                    menuToggle.setAttribute(
+                        "aria-label",
+                        "Open navigation menu"
+                    );
+
+
+                    menuToggle.textContent =
+                        "☰";
+
+                }
+            );
+
+        }
+    );
+
 </script>
 
 
