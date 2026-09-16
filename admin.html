@@ -26,7 +26,7 @@ main{max-width:1200px;margin:30px auto;padding:0 18px}.login-card,.dashboard{bac
 <form id="loginForm">
 <div class="field"><label for="email">Email</label><input id="email" type="email" value="islandkeysrental@gmail.com" required></div>
 <div class="field"><label for="password">Password</label><input id="password" type="password" required></div>
-<button class="login-btn" type="submit">Log in</button><div id="loginError" class="error"></div>
+<button class="login-btn" type="submit">Log in</button><div style="text-align:center;margin-top:14px"><a href="#" id="forgotPassword" style="color:var(--navy);font-size:14px;font-weight:700;text-decoration:none">Forgot password?</a></div><div id="loginError" class="error"></div>
 </form></section>
 <section id="dashboardSection" class="hidden">
 <div class="notice">Only the Island Keys Rentals admin account should use this dashboard. A pending booking blocks its dates until it is confirmed or cancelled.</div>
@@ -36,7 +36,7 @@ main{max-width:1200px;margin:30px auto;padding:0 18px}.login-card,.dashboard{bac
 </main>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import { getFirestore, collection, getDocs, doc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 const firebaseConfig={apiKey:"AIzaSyBVRPD8aUbfkJvRy1ML9WOXVTDBZ1Qd9JY",authDomain:"island-keys-rentals.firebaseapp.com",projectId:"island-keys-rentals",storageBucket:"island-keys-rentals.firebasestorage.app",messagingSenderId:"772061526762",appId:"1:772061526762:web:d2e01c7376856262a57593"};
@@ -44,6 +44,7 @@ const ADMIN_EMAIL="islandkeysrental@gmail.com";
 const app=initializeApp(firebaseConfig); const auth=getAuth(app); const db=getFirestore(app);
 const loginSection=document.getElementById('loginSection'), dashboardSection=document.getElementById('dashboardSection'), logoutBtn=document.getElementById('logoutBtn');
 const list=document.getElementById('bookingList');
+const forgotPassword=document.getElementById('forgotPassword');
 
 function escapeHtml(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
 function dateRange(checkIn,checkOut){return `${checkIn} → ${checkOut}`;}
@@ -91,6 +92,22 @@ async function changeBooking(id,newStatus){
 }
 
 loginForm.addEventListener('submit',async e=>{e.preventDefault();document.getElementById('loginError').textContent='';try{await signInWithEmailAndPassword(auth,email.value.trim(),password.value);}catch(err){document.getElementById('loginError').textContent='Login failed. Check the email and password.';}});
+forgotPassword.addEventListener('click',async e=>{
+ e.preventDefault();
+ const adminEmail=email.value.trim();
+ document.getElementById('loginError').textContent='';
+ if(!adminEmail){document.getElementById('loginError').textContent='Enter your admin email first.';return;}
+ if(adminEmail.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){document.getElementById('loginError').textContent='Password reset is only available for the admin account.';return;}
+ try{
+  await sendPasswordResetEmail(auth,adminEmail);
+  document.getElementById('loginError').style.color='var(--green)';
+  document.getElementById('loginError').textContent='Password reset email sent. Check your inbox (and spam folder).';
+ }catch(err){
+  console.error(err);
+  document.getElementById('loginError').style.color='var(--red)';
+  document.getElementById('loginError').textContent='Could not send password reset email. Please try again.';
+ }
+});
 logoutBtn.addEventListener('click',()=>signOut(auth));
 refreshBtn.addEventListener('click',loadBookings);
 list.addEventListener('click',e=>{const btn=e.target.closest('button[data-action]');if(!btn)return;const action=btn.dataset.action;if(action==='confirm' && confirm('Confirm this booking?'))changeBooking(btn.dataset.id,'confirmed');if(action==='cancel' && confirm('Cancel this booking and release the dates?'))changeBooking(btn.dataset.id,'cancelled');});
