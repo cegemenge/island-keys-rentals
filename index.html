@@ -842,6 +842,219 @@ footer strong{
     }
 }
 
+
+/* =========================================================
+   AVAILABILITY CALENDAR
+   ========================================================= */
+
+.availability-section{
+    background:#fff;
+}
+
+.calendar-wrap{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:30px;
+    align-items:stretch;
+}
+
+.calendar-card{
+    background:#fff;
+    border:1px solid #e4e9ed;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+.calendar-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:22px;
+}
+
+.calendar-header h3{
+    font-family:Georgia,serif;
+    color:#12345b;
+    font-size:28px;
+}
+
+.calendar-nav{
+    display:flex;
+    gap:8px;
+}
+
+.calendar-nav button{
+    width:42px;
+    height:42px;
+    border:1px solid #d9e1e8;
+    background:#fff;
+    color:#12345b;
+    border-radius:50%;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.calendar-nav button:hover{
+    background:#eaf7f0;
+    border-color:#08783c;
+    color:#08783c;
+}
+
+.calendar-weekdays,
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:8px;
+}
+
+.calendar-weekdays{
+    margin-bottom:8px;
+}
+
+.calendar-weekdays div{
+    text-align:center;
+    color:#66758a;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+.calendar-day{
+    min-height:48px;
+    border:1px solid #e4e9ed;
+    border-radius:10px;
+    background:#fff;
+    color:#12345b;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.15s ease;
+}
+
+.calendar-day:hover:not(:disabled){
+    border-color:#08783c;
+    background:#eaf7f0;
+}
+
+.calendar-day.other-month,
+.calendar-day.past{
+    color:#b9c1c9;
+    background:#f7f8f9;
+}
+
+.calendar-day.booked{
+    background:#fbe7e7;
+    border-color:#e2a4a4;
+    color:#b42318;
+    text-decoration:line-through;
+    cursor:not-allowed;
+}
+
+.calendar-day.selected{
+    background:#08783c;
+    border-color:#08783c;
+    color:#fff;
+}
+
+.calendar-day.in-range,
+.calendar-day.selected-range{
+    background:#08783c !important;
+    border-color:#08783c !important;
+    color:#fff !important;
+}
+
+.calendar-day.selected-range:hover:not(:disabled){
+    background:#066b35 !important;
+    border-color:#066b35 !important;
+}
+
+.calendar-day:disabled{
+    cursor:not-allowed;
+}
+
+.calendar-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:22px;
+}
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#66758a;
+    font-size:13px;
+}
+
+.legend-dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#d9f0e3;
+    border:1px solid #08783c;
+}
+
+.legend-dot.booked{
+    background:#fbe7e7;
+    border-color:#b42318;
+}
+
+.legend-dot.selected{
+    background:#08783c;
+    border-color:#08783c;
+}
+
+.availability-note{
+    margin-top:18px;
+    color:#66758a;
+    font-size:13px;
+}
+
+.calendar-info{
+    background:#12345b;
+    color:#fff;
+    border-radius:24px;
+    padding:40px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.calendar-info .eyebrow{
+    color:#ffbf1c;
+}
+
+.calendar-info h3{
+    font-family:Georgia,serif;
+    font-size:38px;
+    line-height:1.1;
+    margin-bottom:18px;
+}
+
+.calendar-info p{
+    opacity:.9;
+}
+
+.calendar-status{
+    margin-top:25px;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(255,255,255,.1);
+}
+
+.calendar-status strong{
+    display:block;
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.calendar-status span{
+    font-size:14px;
+    opacity:.9;
+}
+
 </style>
 </head>
 
@@ -1136,7 +1349,7 @@ Island Keys Rentals can recommend trusted travel partners.
 
 <p class="section-description">
     Check your preferred dates before sending your booking request.
-    Booked dates will appear in red.
+    Unavailable dates will appear in red.
 </p>
 
 
@@ -1245,7 +1458,7 @@ Island Keys Rentals can recommend trusted travel partners.
 </span>
 
 </div>
-<p class="availability-note" style="color:#fff;opacity:.85;">Availability is subject to confirmation by Island Keys Rentals. A booking request does not become a confirmed reservation until the business confirms it.</p>
+<p class="availability-note" style="color:#fff;opacity:.85;">Availability is subject to confirmation by Island Keys Rentals. A booking request places a temporary pending hold on the selected dates until the business confirms or releases them.</p>
 <a href="#contact" class="btn btn-primary" style="margin-top:15px;background:#ffbf1c;color:#12345b;">Continue to Booking Request</a>
 </div>
 
@@ -2166,45 +2379,44 @@ Island Keys Rentals can recommend trusted travel partners.
      JAVASCRIPT
      ========================================================= -->
 
-<script>
+<script type="module">
+
+/* =========================================================
+   FIREBASE + SHARED AVAILABILITY
+   ========================================================= */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    doc,
+    query,
+    where,
+    onSnapshot,
+    runTransaction,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBVRPD8aUbfkJvRy1ML9WOXVTDBZ1Qd9JY",
+    authDomain: "island-keys-rentals.firebaseapp.com",
+    projectId: "island-keys-rentals",
+    storageBucket: "island-keys-rentals.firebasestorage.app",
+    messagingSenderId: "772061526762",
+    appId: "1:772061526762:web:d2e01c7376856262a57593"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 
 /* =========================================================
-   AVAILABILITY CALENDAR
+   AVAILABILITY STATE
    ========================================================= */
 
-/*
-   IMPORTANT:
-
-   Put CONFIRMED BOOKED DATES inside this list.
-
-   Example:
-
-   const bookedDates = [
-       "2027-01-10",
-       "2027-01-11",
-       "2027-01-12"
-   ];
-
-   For now it is empty because we do not yet have
-   confirmed booked dates from the client.
-*/
-
-const bookedDates = [
-    /*
-        ADD CONFIRMED BOOKED DATES HERE.
-
-        Example:
-        "2027-01-10",
-        "2027-01-11",
-        "2027-01-12"
-
-        These are the nights the apartment is occupied.
-        After a booking is confirmed, add each occupied
-        date here.
-    */
-];
-
+const unavailableDates = new Set();
 
 const calendarGrid =
     document.getElementById("calendarGrid");
@@ -2224,7 +2436,6 @@ const checkinInput =
 const checkoutInput =
     document.getElementById("checkout");
 
-
 let calendarDate = new Date();
 
 calendarDate = new Date(
@@ -2232,7 +2443,6 @@ calendarDate = new Date(
     calendarDate.getMonth(),
     1
 );
-
 
 let selectedCheckIn = "";
 let selectedCheckOut = "";
@@ -2267,9 +2477,9 @@ function parseDate(value){
 }
 
 
-function isBooked(key){
+function isUnavailable(key){
 
-    return bookedDates.includes(key);
+    return unavailableDates.has(key);
 }
 
 
@@ -2283,10 +2493,17 @@ function isPast(date){
 }
 
 
-function rangeContainsBooked(
+/* =========================================================
+   GET OCCUPIED NIGHTS
+   Checkout date is not included.
+   ========================================================= */
+
+function getOccupiedDates(
     startKey,
     endKey
 ){
+
+    const dates = [];
 
     const start =
         parseDate(startKey);
@@ -2295,31 +2512,137 @@ function rangeContainsBooked(
         parseDate(endKey);
 
     if(!start || !end){
-        return false;
+        return dates;
     }
 
     const cursor =
         new Date(start);
 
-    /*
-        Check occupied nights only.
-        The checkout date itself is not an occupied night,
-        so a guest can check out on the same date another
-        guest checks in.
-    */
     while(cursor < end){
 
-        if(isBooked(dateKey(cursor))){
-            return true;
-        }
+        dates.push(
+            dateKey(cursor)
+        );
 
         cursor.setDate(
             cursor.getDate() + 1
         );
     }
 
-    return false;
+    return dates;
 }
+
+
+function rangeContainsUnavailable(
+    startKey,
+    endKey
+){
+
+    const occupiedDates =
+        getOccupiedDates(
+            startKey,
+            endKey
+        );
+
+    return occupiedDates.some(
+        key => isUnavailable(key)
+    );
+}
+
+
+/* =========================================================
+   LOAD LIVE AVAILABILITY FROM FIRESTORE
+   ========================================================= */
+
+/*
+   We do NOT read customer names, phone numbers or emails
+   into the public calendar.
+
+   The public website reads only the separate
+   "availability" collection.
+
+   Pending and confirmed dates are unavailable.
+*/
+
+const availabilityQuery =
+    query(
+        collection(db,"availability"),
+        where(
+            "status",
+            "in",
+            ["pending","confirmed"]
+        )
+    );
+
+
+onSnapshot(
+    availabilityQuery,
+    function(snapshot){
+
+        unavailableDates.clear();
+
+        snapshot.forEach(
+            function(item){
+
+                const data =
+                    item.data();
+
+                if(
+                    data.date &&
+                    (
+                        data.status === "pending" ||
+                        data.status === "confirmed"
+                    )
+                ){
+
+                    unavailableDates.add(
+                        data.date
+                    );
+                }
+            }
+        );
+
+        renderCalendar();
+
+        /*
+           Re-check dates currently selected.
+        */
+
+        if(
+            selectedCheckIn &&
+            isUnavailable(selectedCheckIn)
+        ){
+
+            selectedCheckIn = "";
+            selectedCheckOut = "";
+
+            checkinInput.value = "";
+            checkoutInput.value = "";
+
+            calendarStatusTitle.textContent =
+                "Dates updated";
+
+            calendarStatusText.textContent =
+                "A selected date is no longer available. Please choose new dates.";
+
+            renderCalendar();
+        }
+
+    },
+    function(error){
+
+        console.error(
+            "Availability listener error:",
+            error
+        );
+
+        calendarStatusTitle.textContent =
+            "Availability unavailable";
+
+        calendarStatusText.textContent =
+            "Please refresh the page and try again.";
+    }
+);
 
 
 /* =========================================================
@@ -2334,7 +2657,6 @@ function renderCalendar(){
     const month =
         calendarDate.getMonth();
 
-
     calendarMonth.textContent =
         calendarDate.toLocaleString(
             "en-US",
@@ -2344,9 +2666,7 @@ function renderCalendar(){
             }
         );
 
-
     calendarGrid.innerHTML = "";
-
 
     const firstDay =
         new Date(
@@ -2355,14 +2675,12 @@ function renderCalendar(){
             1
         ).getDay();
 
-
     const daysInMonth =
         new Date(
             year,
             month + 1,
             0
         ).getDate();
-
 
     const daysInPrevMonth =
         new Date(
@@ -2387,7 +2705,10 @@ function renderCalendar(){
                 daysInPrevMonth - i
             );
 
-        addDay(date,true);
+        addDay(
+            date,
+            true
+        );
     }
 
 
@@ -2417,7 +2738,6 @@ function renderCalendar(){
 
     const remaining =
         (7 - (totalCells % 7)) % 7;
-
 
     for(
         let day = 1;
@@ -2449,20 +2769,16 @@ function addDay(
     const key =
         dateKey(date);
 
-
     const button =
         document.createElement("button");
-
 
     button.type = "button";
 
     button.className =
         "calendar-day";
 
-
     button.textContent =
         date.getDate();
-
 
     button.setAttribute(
         "aria-label",
@@ -2479,6 +2795,7 @@ function addDay(
 
 
     if(otherMonth){
+
         button.classList.add(
             "other-month"
         );
@@ -2486,18 +2803,36 @@ function addDay(
 
 
     if(isPast(date)){
+
         button.classList.add(
             "past"
         );
     }
 
 
-    if(isBooked(key)){
+    if(isUnavailable(key)){
+
         button.classList.add(
             "booked"
         );
     }
 
+
+    /*
+       Highlight every date in the selected range, including
+       the check-in and check-out dates.
+    */
+    if(
+        selectedCheckIn &&
+        selectedCheckOut &&
+        key >= selectedCheckIn &&
+        key <= selectedCheckOut
+    ){
+
+        button.classList.add(
+            "selected-range"
+        );
+    }
 
     if(
         key === selectedCheckIn ||
@@ -2510,22 +2845,9 @@ function addDay(
     }
 
 
-    if(
-        selectedCheckIn &&
-        selectedCheckOut &&
-        key > selectedCheckIn &&
-        key < selectedCheckOut
-    ){
-
-        button.classList.add(
-            "in-range"
-        );
-    }
-
-
     const unavailable =
         isPast(date) ||
-        isBooked(key) ||
+        isUnavailable(key) ||
         otherMonth;
 
 
@@ -2543,7 +2865,6 @@ function addDay(
 
             }
         );
-
     }
 
 
@@ -2560,8 +2881,8 @@ function addDay(
 function selectDate(key){
 
     /*
-       First click = check-in
-       Second click = check-out
+       First click = check-in.
+       Second click = check-out.
     */
 
     if(
@@ -2587,10 +2908,8 @@ function selectDate(key){
         checkoutInput.min =
             key;
 
-
         calendarStatusTitle.textContent =
             "Check-in selected";
-
 
         calendarStatusText.textContent =
             "Now select an available check-out date.";
@@ -2600,9 +2919,8 @@ function selectDate(key){
     else{
 
         /*
-           If user clicks a date before
-           the current check-in, make it
-           the new check-in.
+           Clicking before the check-in
+           starts a new selection.
         */
 
         if(key <= selectedCheckIn){
@@ -2622,24 +2940,21 @@ function selectDate(key){
             checkoutInput.min =
                 key;
 
-
             calendarStatusTitle.textContent =
                 "Check-in updated";
 
-
             calendarStatusText.textContent =
                 "Now select an available check-out date.";
-
         }
 
 
         /*
-           Check whether range contains
-           booked dates.
+           Make sure the selected range
+           contains no unavailable nights.
         */
 
         else if(
-            rangeContainsBooked(
+            rangeContainsUnavailable(
                 selectedCheckIn,
                 key
             )
@@ -2648,10 +2963,8 @@ function selectDate(key){
             calendarStatusTitle.textContent =
                 "Dates not available";
 
-
             calendarStatusText.textContent =
-                "Your selected range contains a booked date. Please choose another date.";
-
+                "Your selected range contains an unavailable date. Please choose another date.";
         }
 
 
@@ -2663,18 +2976,13 @@ function selectDate(key){
             checkoutInput.value =
                 key;
 
-
             calendarStatusTitle.textContent =
                 "Dates selected";
 
-
             calendarStatusText.textContent =
                 `${selectedCheckIn} to ${selectedCheckOut}. Your booking request is ready.`;
-
         }
-
     }
-
 
     renderCalendar();
 }
@@ -2734,11 +3042,11 @@ checkinInput.addEventListener(
 
 
         if(
-            isBooked(this.value)
+            isUnavailable(this.value)
         ){
 
             alert(
-                "This date is already booked. Please choose another date."
+                "This date is already unavailable. Please choose another date."
             );
 
             this.value = "";
@@ -2753,26 +3061,20 @@ checkinInput.addEventListener(
         selectedCheckOut =
             "";
 
-
         checkoutInput.value =
             "";
-
 
         checkoutInput.min =
             this.value;
 
-
         calendarStatusTitle.textContent =
             "Check-in selected";
-
 
         calendarStatusText.textContent =
             "Now select an available check-out date.";
 
-
         const chosenDate =
             parseDate(this.value);
-
 
         if(chosenDate){
 
@@ -2783,7 +3085,6 @@ checkinInput.addEventListener(
                     1
                 );
         }
-
 
         renderCalendar();
 
@@ -2827,14 +3128,14 @@ checkoutInput.addEventListener(
 
 
         if(
-            rangeContainsBooked(
+            rangeContainsUnavailable(
                 checkinInput.value,
                 this.value
             )
         ){
 
             alert(
-                "One or more dates in your selected range are booked. Please choose different dates."
+                "One or more dates in your selected range are unavailable. Please choose different dates."
             );
 
             this.value = "";
@@ -2852,14 +3153,11 @@ checkoutInput.addEventListener(
         selectedCheckOut =
             this.value;
 
-
         calendarStatusTitle.textContent =
             "Dates selected";
 
-
         calendarStatusText.textContent =
             `${selectedCheckIn} to ${selectedCheckOut}. Your booking request is ready.`;
-
 
         renderCalendar();
 
@@ -2874,122 +3172,351 @@ checkoutInput.addEventListener(
 const todayKey =
     dateKey(new Date());
 
-
 checkinInput.min =
     todayKey;
 
 checkoutInput.min =
     todayKey;
 
-
 renderCalendar();
 
 
 /* =========================================================
-   BOOKING FORM → WHATSAPP
+   CREATE SHARED BOOKING + HOLD DATES
+   ========================================================= */
+
+/*
+   When a customer submits:
+
+   1. A booking document is created.
+   2. Every occupied night gets an availability document.
+   3. Firestore performs these writes in one transaction.
+   4. If another customer has already taken any of those dates,
+      the transaction fails and NO booking is created.
+
+   This is what prevents two customers from successfully
+   taking the same dates at the same time.
+*/
+
+async function createBooking(){
+
+    const name =
+        document
+        .getElementById("name")
+        .value
+        .trim();
+
+    const phone =
+        document
+        .getElementById("phone")
+        .value
+        .trim();
+
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .trim();
+
+    const guests =
+        document
+        .getElementById("guests")
+        .value;
+
+    const checkin =
+        checkinInput.value;
+
+    const checkout =
+        checkoutInput.value;
+
+    const packageChoice =
+        document
+        .getElementById("packageChoice")
+        .value;
+
+    const message =
+        document
+        .getElementById("message")
+        .value
+        .trim();
+
+
+    if(
+        !checkin ||
+        !checkout
+    ){
+
+        throw new Error(
+            "Please select your check-in and check-out dates."
+        );
+    }
+
+
+    if(
+        checkout <= checkin
+    ){
+
+        throw new Error(
+            "Check-out must be after check-in."
+        );
+    }
+
+
+    if(
+        rangeContainsUnavailable(
+            checkin,
+            checkout
+        )
+    ){
+
+        throw new Error(
+            "One or more dates in your selected range are no longer available. Please choose different dates."
+        );
+    }
+
+
+    const occupiedDates =
+        getOccupiedDates(
+            checkin,
+            checkout
+        );
+
+
+    if(occupiedDates.length === 0){
+
+        throw new Error(
+            "Please select valid booking dates."
+        );
+    }
+
+
+    const bookingRef =
+        doc(
+            collection(
+                db,
+                "bookings"
+            )
+        );
+
+
+    await runTransaction(
+        db,
+        async function(transaction){
+
+            /*
+               IMPORTANT:
+               All reads happen before writes.
+            */
+
+            const availabilityRefs =
+                occupiedDates.map(
+                    function(date){
+
+                        return doc(
+                            db,
+                            "availability",
+                            date
+                        );
+
+                    }
+                );
+
+
+            const availabilitySnapshots = [];
+
+            for(
+                const availabilityRef
+                of availabilityRefs
+            ){
+
+                const snapshot =
+                    await transaction.get(
+                        availabilityRef
+                    );
+
+                availabilitySnapshots.push(
+                    snapshot
+                );
+            }
+
+
+            /*
+               If any occupied date already exists,
+               stop the transaction.
+            */
+
+            for(
+                const snapshot
+                of availabilitySnapshots
+            ){
+
+                if(snapshot.exists()){
+
+                    const existing =
+                        snapshot.data();
+
+                    if(
+                        existing.status === "pending" ||
+                        existing.status === "confirmed"
+                    ){
+
+                        throw new Error(
+                            "Someone has already selected one or more of these dates. Please choose another date."
+                        );
+                    }
+                }
+            }
+
+
+            /*
+               Create the booking request.
+            */
+
+            transaction.set(
+                bookingRef,
+                {
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    guests: guests,
+                    checkIn: checkin,
+                    checkOut: checkout,
+                    package: packageChoice,
+                    message: message,
+                    status: "pending",
+                    createdAt: serverTimestamp()
+                }
+            );
+
+
+            /*
+               Create one public availability record
+               for each occupied night.
+
+               No customer personal information is stored
+               in these public availability documents.
+            */
+
+            for(
+                const date
+                of occupiedDates
+            ){
+
+                transaction.set(
+                    doc(
+                        db,
+                        "availability",
+                        date
+                    ),
+                    {
+                        date: date,
+                        status: "pending",
+                        bookingId: bookingRef.id,
+                        createdAt: serverTimestamp()
+                    }
+                );
+            }
+
+        }
+    );
+
+    return bookingRef.id;
+}
+
+
+/* =========================================================
+   BOOKING FORM → FIRESTORE + WHATSAPP
    ========================================================= */
 
 document
     .getElementById("bookingForm")
     .addEventListener(
         "submit",
-        function(event){
+        async function(event){
 
             event.preventDefault();
 
 
-            const name =
-                document
-                .getElementById("name")
-                .value
-                .trim();
+            /*
+               Open a blank tab immediately so the browser
+               does not block WhatsApp after the async
+               Firestore transaction.
+            */
 
-
-            const phone =
-                document
-                .getElementById("phone")
-                .value
-                .trim();
-
-
-            const email =
-                document
-                .getElementById("email")
-                .value
-                .trim();
-
-
-            const guests =
-                document
-                .getElementById("guests")
-                .value;
-
-
-            const checkin =
-                checkinInput.value;
-
-
-            const checkout =
-                checkoutInput.value;
-
-
-            const packageChoice =
-                document
-                .getElementById("packageChoice")
-                .value;
-
-
-            const message =
-                document
-                .getElementById("message")
-                .value
-                .trim();
-
-
-            if(
-                !checkin ||
-                !checkout
-            ){
-
-                alert(
-                    "Please select your check-in and check-out dates."
+            const whatsappWindow =
+                window.open(
+                    "about:blank",
+                    "_blank"
                 );
 
-                return;
-            }
 
-
-            if(
-                checkout <= checkin
-            ){
-
-                alert(
-                    "Check-out must be after check-in."
+            const submitButton =
+                this.querySelector(
+                    ".submit-btn"
                 );
 
-                return;
-            }
+            const originalButtonText =
+                submitButton.textContent;
+
+            submitButton.disabled = true;
+
+            submitButton.textContent =
+                "Checking availability...";
 
 
-            if(
-                rangeContainsBooked(
-                    checkin,
-                    checkout
-                )
-            ){
+            try{
 
-                alert(
-                    "One or more dates in your selected range are booked. Please choose different dates."
-                );
-
-                return;
-            }
+                const bookingId =
+                    await createBooking();
 
 
-            const whatsappText =
+                const name =
+                    document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
+                const phone =
+                    document
+                    .getElementById("phone")
+                    .value
+                    .trim();
+
+                const email =
+                    document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+                const guests =
+                    document
+                    .getElementById("guests")
+                    .value;
+
+                const checkin =
+                    checkinInput.value;
+
+                const checkout =
+                    checkoutInput.value;
+
+                const packageChoice =
+                    document
+                    .getElementById("packageChoice")
+                    .value;
+
+                const message =
+                    document
+                    .getElementById("message")
+                    .value
+                    .trim();
+
+
+                const whatsappText =
 `Hello Island Keys Rentals!
 
 BOOKING INQUIRY
+
+Booking ID: ${bookingId}
 
 Name: ${name}
 Phone: ${phone}
@@ -3003,22 +3530,77 @@ Package: ${packageChoice}
 Message:
 ${message}
 
+The dates have been placed on a pending hold in the availability calendar.
+
 Please confirm availability and booking details.
 
 Thank you.`;
 
 
-            const whatsappURL =
-                "https://wa.me/12468517895?text=" +
-                encodeURIComponent(
-                    whatsappText
+                const whatsappURL =
+                    "https://wa.me/12468517895?text=" +
+                    encodeURIComponent(
+                        whatsappText
+                    );
+
+
+                /*
+                   Send the customer to WhatsApp.
+                */
+
+                if(
+                    whatsappWindow &&
+                    !whatsappWindow.closed
+                ){
+
+                    whatsappWindow.location.href =
+                        whatsappURL;
+
+                }
+                else{
+
+                    window.location.href =
+                        whatsappURL;
+                }
+
+
+                calendarStatusTitle.textContent =
+                    "Booking request received";
+
+                calendarStatusText.textContent =
+                    "Your selected dates are now temporarily held as pending. Island Keys Rentals will confirm the reservation.";
+
+            }
+            catch(error){
+
+                console.error(
+                    "Booking error:",
+                    error
                 );
 
 
-            window.open(
-                whatsappURL,
-                "_blank"
-            );
+                if(
+                    whatsappWindow &&
+                    !whatsappWindow.closed
+                ){
+
+                    whatsappWindow.close();
+                }
+
+
+                alert(
+                    error.message ||
+                    "We could not save your booking request. Please try again."
+                );
+
+            }
+            finally{
+
+                submitButton.disabled = false;
+
+                submitButton.textContent =
+                    originalButtonText;
+            }
 
         }
     );
@@ -3043,13 +3625,11 @@ document
                 .value
                 .trim();
 
-
             const phone =
                 document
                 .getElementById("ownerPhone")
                 .value
                 .trim();
-
 
             const email =
                 document
@@ -3057,19 +3637,16 @@ document
                 .value
                 .trim();
 
-
             const type =
                 document
                 .getElementById("propertyType")
                 .value;
-
 
             const location =
                 document
                 .getElementById("propertyLocation")
                 .value
                 .trim();
-
 
             const message =
                 document
@@ -3125,7 +3702,6 @@ const menuToggle =
     document.getElementById(
         "menuToggle"
     );
-
 
 const navLinks =
     document.getElementById(
